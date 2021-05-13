@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Layout, PageHeader } from 'antd';
 
 const { Content } = Layout;
 
-import '../common/scss/common.scss';
+import 'common/scss/common.scss';
 
-const App: FC = () => (
+const App= () => (
     <>
         <PageHeader
             className="site-page-header"
