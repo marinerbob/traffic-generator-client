@@ -84,7 +84,7 @@ const config = {
             pages: path.resolve(SRC_DIR, 'pages'),
             common: path.resolve(SRC_DIR, 'common'),
             components: path.resolve(SRC_DIR, 'components'),
-            redux: path.resolve(SRC_DIR, 'redux'),
+            reduxConfig: path.resolve(SRC_DIR, 'reduxConfig'),
             shells: path.resolve(SRC_DIR, 'shells')
         },
     }
