@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useDispatch } from "react-redux";
+import { fetchHosts } from './redux/actions';
 
 import { Table, Tag } from "antd";
 
@@ -85,8 +88,16 @@ const data = [
   }
 ];
 
-export default () => (
-  <>
-    <Table dataSource={data} columns={columns} pagination={{ pageSize: 8 }} />
-  </>
-);
+export default () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchHosts());
+  }, []);
+
+  return (
+    <>
+      <Table dataSource={data} columns={columns} pagination={{ pageSize: 8 }} />
+    </>
+  );
+}

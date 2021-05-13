@@ -1,9 +1,7 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 
-const defaultState = {
-    hosts: []
-}
+import hostsTable from 'pages/hostsPage/components/hostsTable/redux/reducers.js';
 
-export default createReducer(defaultState, builder => {
-
+export default combineReducers({
+    hostsTable
 });

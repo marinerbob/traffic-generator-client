@@ -6,8 +6,8 @@ import HostsPage from 'pages/hostsPage';
 import ReduxShell from 'shells/redux';
 export default function App() {
   return (
-    <div className="App">
+    <ReduxShell>
       <HostsPage />
-    </div>
+    </ReduxShell>
   );
 }
