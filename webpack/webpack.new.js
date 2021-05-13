@@ -16,7 +16,7 @@ const config = {
         main: path.resolve(SRC_DIR, 'index.js')
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[chunkhash].js',
         path: path.resolve(ROOT_DIR, 'dist')
     },
     mode: 'development',
@@ -67,7 +67,7 @@ const config = {
         },
     },
     devServer: {
-        contentBase: path.join(ROOT_DIR, "dist"),
+        contentBase: DIST_DIR,
         compress: true,
         port: 4200,
         watchContentBase: true,
@@ -76,13 +76,16 @@ const config = {
         open: true,
         historyApiFallback: true
     },
+    devtool: 'inline-source-map',
     resolve: {
         extensions: [".js", ".jsx"],
         alias: { 
             src: SRC_DIR,
             pages: path.resolve(SRC_DIR, 'pages'),
             common: path.resolve(SRC_DIR, 'common'),
-            components: path.resolve(SRC_DIR, 'components')
+            components: path.resolve(SRC_DIR, 'components'),
+            redux: path.resolve(SRC_DIR, 'redux'),
+            shells: path.resolve(SRC_DIR, 'shells')
         },
     }
 };

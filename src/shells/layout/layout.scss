@@ -1,0 +1,30 @@
+.main-container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+  }
+  
+  .header {
+
+  }
+  
+  .layout-header {
+    float: left;
+    color: #ffffff;
+    margin-right: 30px;
+    font-weight: bold;
+  }
+  
+  .layout-content {
+    padding: 20px;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+  }
+  
+  .page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
