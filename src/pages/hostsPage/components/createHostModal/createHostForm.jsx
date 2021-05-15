@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Input } from "antd";
+import { Input, Button } from "antd";
 
 import { Controller, useForm } from "react-hook-form";
 
@@ -10,7 +10,7 @@ export default () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form name="create-host" onFinish={handleSubmit(onSubmit)}>
+    <form id="create-host" name="create-host" onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="name"
         control={control}
@@ -26,7 +26,11 @@ export default () => {
         render={({ field }) => (
           <Input className="form-input" placeholder="Введите ip хоста" />
         )}
+        
       />
+      <button type="submit">
+        Добавить хост
+      </button>
     </form>
   );
 };

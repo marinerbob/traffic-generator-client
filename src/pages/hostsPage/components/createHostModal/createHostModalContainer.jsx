@@ -38,8 +38,7 @@ export default () => {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
-        okText="Добавить хост"
-        cancelText="Отменить добавление"
+        footer={[]}
       >
         <CreateHostForm />
       </Modal>
