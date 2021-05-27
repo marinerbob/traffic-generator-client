@@ -24,7 +24,7 @@ const config = {
         rules: [
             { 
                 test: /\.js(x?)$/,
-                exclude: /node_modules/,
+                exclude: /node_modules|fonts/,
                 use: {
                       loader: 'babel-loader',
                       options: {
@@ -42,7 +42,7 @@ const config = {
                 ]
             },
             {
-                test: /\.(png|svg|jpg|gif|pdf)$/,
+                test: /\.(woff(2)?|ttf|eot|png|svg|jpg|gif|pdf)$/,
                 type: 'asset/resource'
             }
         ]
@@ -67,14 +67,15 @@ const config = {
         },
     },
     devServer: {
-        contentBase: DIST_DIR,
+        contentBase: SRC_DIR,
         compress: true,
         port: 4200,
         watchContentBase: true,
         progress: true,
         hot: true,
         open: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        inline: true
     },
     devtool: 'inline-source-map',
     resolve: {

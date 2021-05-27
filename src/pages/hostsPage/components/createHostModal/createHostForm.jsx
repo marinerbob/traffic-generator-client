@@ -16,7 +16,7 @@ export default () => {
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <Input className="form-input" placeholder="Введите имя хоста" />
+          <Input className="form-input" placeholder="Введите имя хоста" {...field} />
         )}
       />
       <Controller
@@ -24,13 +24,10 @@ export default () => {
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <Input className="form-input" placeholder="Введите ip хоста" />
+          <Input className="form-input" placeholder="Введите ip хоста" {...field} />
         )}
         
       />
-      <button type="submit">
-        Добавить хост
-      </button>
     </form>
   );
 };

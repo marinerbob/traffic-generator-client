@@ -35,10 +35,12 @@ export default () => {
       <Modal
         title="Окно добавления хоста"
         visible={visible}
-        onOk={handleOk}
         confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-        footer={[]}
+        footer={[
+          <Button key="create" form="create-host" type="primary" htmlType="submit" onClick={handleOk} loading={confirmLoading}>
+            Добавить хост
+          </Button>
+        ]}
       >
         <CreateHostForm />
       </Modal>
