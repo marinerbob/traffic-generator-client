@@ -9,10 +9,12 @@ const defaultState = {
 
 export default createReducer(defaultState, builder => {
     builder.addCase(FETCH_DATA_START, (state, action) => {
-
+        state.loadingState = consts.loadingState.LOADING_STARTED;
     });
 
     builder.addCase(FETCH_DATA_FINISH, (state, action) => {
-        state.data = action.payload;
+        let { data, loadingState } = action.payload;
+        state.data = data;
+        state.loadingState = loadingState;
     });
 });

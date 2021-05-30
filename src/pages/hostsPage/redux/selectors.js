@@ -1,0 +1,1 @@
+export const getHostsPage = state => state.hostsPage;
