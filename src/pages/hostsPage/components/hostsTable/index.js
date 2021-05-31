@@ -30,6 +30,8 @@ const columns = [
   }
 ];
 
+const data = [];
+
 export default () => {
   const dispatch = useDispatch();
   

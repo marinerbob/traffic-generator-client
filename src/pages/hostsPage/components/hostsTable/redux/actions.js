@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { FETCH_DATA_START, FETCH_DATA_FINISH } from './actionTypes';
 
-import fakeAPI from 'src/fakeAPI/fakeAPI.js';
+import fakeAPI from 'src/fakeAPI/hosts.js';
 
 const __fetchDataFinished = createAction(FETCH_DATA_FINISH);
 const __fetchDataStart = createAction(FETCH_DATA_START);
