@@ -72,5 +72,5 @@ export default () => {
         getUsers,
         addHost,
         addUser
-    }
+    };
 }
