@@ -17,12 +17,12 @@ export default ({ children }) => (
       <Sider width={200} theme="dark" className="site-layout-background">
         <Menu
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["/hosts"]}
           style={{ height: "100%", borderRight: 0 }}
         >
-          <Link to="/hosts"><Menu.Item key="1">Хосты</Menu.Item></Link>
-          <Link to="/tasks"><Menu.Item key="2">Задачи</Menu.Item></Link>
-          <Link to="/users"><Menu.Item key="3">Пользователи</Menu.Item></Link>
+          <Menu.Item key="/hosts"><Link to="/hosts">Хосты</Link></Menu.Item>
+          <Menu.Item key="/tasks"><Link to="/tasks">Задачи</Link></Menu.Item>
+          <Menu.Item key="/users"><Link to="/users">Пользователи</Link></Menu.Item>
         </Menu>
       </Sider>
       <Content className="layout-content">{children}</Content>

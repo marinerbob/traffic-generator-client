@@ -10,6 +10,7 @@ import RouterShell from 'shells/router';
 
 import HostsPage from 'pages/hostsPage';
 import UsersPage from 'pages/usersPage';
+import TasksPage from 'pages/tasksPage';
 
 export default function App() {
   return (
@@ -17,15 +18,10 @@ export default function App() {
       <RouterShell>
         <Layout>
           <Switch>
-            <Route path="/users">
-              <UsersPage />
-            </Route>
-            <Route path="/hosts">
-              <HostsPage />
-            </Route>
-            <Route path="/">
-              <HostsPage />
-            </Route>
+            <Route path="/tasks" component={TasksPage} />
+            <Route path="/users" component={UsersPage} />
+            <Route path="/hosts" component={HostsPage} />
+            <Route path="/" component={HostsPage} />
           </Switch>
         </Layout>
       </RouterShell>
