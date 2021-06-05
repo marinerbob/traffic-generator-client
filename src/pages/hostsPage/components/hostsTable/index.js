@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { fetchHosts } from './redux/actions';
+import { getHosts, getLoadingState } from './redux/selectors';
+import consts from './redux/constants';
 
 import { Table, Tag } from "antd";
+
+
 
 const columns = [
   {
@@ -30,11 +35,11 @@ const columns = [
   }
 ];
 
-const data = [];
-
 export default () => {
   const dispatch = useDispatch();
-  
+  const hosts = useSelector(getHosts);
+  const loadingState = useSelector(getLoadingState);
+  const isLoading = loadingState === consts.loadingState.LOADING_STARTED
 
   useEffect(() => {
     dispatch(fetchHosts());
@@ -42,7 +47,7 @@ export default () => {
 
   return (
     <>
-      <Table dataSource={data} columns={columns} pagination={{ pageSize: 8 }} />
+      <Table loading={isLoading} dataSource={hosts} columns={columns} pagination={{ pageSize: 8 }} />
     </>
   );
 }
