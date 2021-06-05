@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchHosts } from './redux/actions';
+import { fetchHosts, fetchDataStart } from './redux/actions';
 import { getHosts, getLoadingState } from './redux/selectors';
 import consts from './redux/constants';
 
@@ -42,7 +42,7 @@ export default () => {
   const isLoading = loadingState === consts.loadingState.LOADING_STARTED
 
   useEffect(() => {
-    dispatch(fetchHosts());
+    dispatch(fetchDataStart());
   }, [dispatch]);
 
   return (

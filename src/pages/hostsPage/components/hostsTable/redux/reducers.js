@@ -2,7 +2,7 @@ import { FETCH_DATA_START, FETCH_DATA_FINISH } from './actionTypes';
 import consts from './constants';
 
 const defaultState = {
-    loadingState: consts.loadingState.LOADING_FINISHED,
+    loadingState: consts.loadingState.LOADING_STARTED,
     data: []
 };
 
