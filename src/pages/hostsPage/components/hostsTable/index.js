@@ -1,41 +1,28 @@
 import React, { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { fetchHosts } from './redux/actions';
 import { getHosts, getLoadingState } from './redux/selectors';
 import consts from './redux/constants';
 
-import { Table, Tag } from "antd";
+import { Table } from "antd";
 
 const columns = [
   {
     title: "IP-адрес",
-    dataIndex: "name",
-    key: "name",
-    render: (text) => <a>{text}</a>
+    dataIndex: "ip",
+    key: "ip"
   },
   {
-    title: "Задачи",
-    key: "tasks",
-    dataIndex: "tasks",
-    render: (tasks) => (
-      <>
-        {tasks.map((task) => {
-          return (
-            <Tag color="geekblue" key={task}>
-              {task}
-            </Tag>
-          );
-        })}
-      </>
-    )
+    title: "Имя",
+    key: "name",
+    dataIndex: "name"
   }
 ];
 
-
 export default () => {
   const dispatch = useDispatch();
-  
   const hosts = useSelector(getHosts);
   const loadingState = useSelector(getLoadingState);
   const isLoading = loadingState === consts.loadingState.LOADING_STARTED
