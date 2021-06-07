@@ -8,6 +8,5 @@ import createRootReducer from './reducers';
 export const history = createBrowserHistory();
 
 export default configureStore({
-  reducer: createRootReducer(history),
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(routerMiddleware)
+  reducer: createRootReducer(history)
 });
