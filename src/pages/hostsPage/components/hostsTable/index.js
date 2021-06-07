@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,17 +23,20 @@ const columns = [
 
 export default () => {
   const dispatch = useDispatch();
+  
   const hosts = useSelector(getHosts);
-  const loadingState = useSelector(getLoadingState);
-  const isLoading = loadingState === consts.loadingState.LOADING_STARTED
 
-  useEffect(() => {
+  const loadingState = useSelector(getLoadingState);
+  const isLoading = loadingState === consts.loadingState.LOADING_STARTED;
+  const isErrored = loadingState === consts.loadingState.LOADING_ERRORED;
+
+  if (isLoading) {
     dispatch(fetchHosts());
-  }, [dispatch]);
+  }
 
   return (
     <>
-      <Table loading={isLoading} dataSource={hosts} columns={columns} pagination={{ pageSize: 8 }} />
+      <Table rowKey="name" loading={isLoading} dataSource={hosts} columns={columns} pagination={{ pageSize: 8 }} />
     </>
   );
 }
