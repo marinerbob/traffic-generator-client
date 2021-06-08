@@ -73,7 +73,7 @@ const config = {
         watchContentBase: true,
         progress: true,
         hot: true,
-        open: true,
+        open: false,
         historyApiFallback: true,
         inline: true
     },

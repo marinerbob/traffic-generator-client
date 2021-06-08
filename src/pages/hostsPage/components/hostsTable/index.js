@@ -6,7 +6,8 @@ import { fetchHosts } from './redux/actions';
 import { getHosts, getLoadingState } from './redux/selectors';
 import consts from './redux/constants';
 
-import { Table } from "antd";
+
+import DataTable from 'components/dataTable/dataTable.jsx';
 
 const columns = [
   {
@@ -21,6 +22,9 @@ const columns = [
   }
 ];
 
+const pageSize = 8;
+const rowKey = "name";
+
 export default () => {
   const dispatch = useDispatch();
   
@@ -28,15 +32,10 @@ export default () => {
 
   const loadingState = useSelector(getLoadingState);
   const isLoading = loadingState === consts.loadingState.LOADING_STARTED;
-  const isErrored = loadingState === consts.loadingState.LOADING_ERRORED;
 
   if (isLoading) {
     dispatch(fetchHosts());
   }
 
-  return (
-    <>
-      <Table rowKey="name" loading={isLoading} dataSource={hosts} columns={columns} pagination={{ pageSize: 8 }} />
-    </>
-  );
+  return <DataTable rowKey={rowKey} isLoading={isLoading} dataSource={hosts} columns={columns} pageSize={pageSize} />
 }
