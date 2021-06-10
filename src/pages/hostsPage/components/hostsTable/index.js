@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchHosts } from './redux/actions';
-import { getHosts, getLoadingState } from './redux/selectors';
+import { getHostsValues, getLoadingState, getHostsLength } from './redux/selectors';
 import consts from './redux/constants';
 
 
@@ -28,14 +28,21 @@ const rowKey = "name";
 export default () => {
   const dispatch = useDispatch();
   
-  const hosts = useSelector(getHosts);
+  const hosts = useSelector(getHostsValues);
+  const hostsLength = useSelector(getHostsLength);
 
   const loadingState = useSelector(getLoadingState);
   const isLoading = loadingState === consts.loadingState.LOADING_STARTED;
+  const skeletonSize = hostsLength > 0 && hostsLength <= pageSize ? hostsLength + 1 : pageSize;
 
   if (isLoading) {
     dispatch(fetchHosts());
   }
 
-  return <DataTable rowKey={rowKey} isLoading={isLoading} dataSource={hosts} columns={columns} pageSize={pageSize} />
+  return <DataTable rowKey={rowKey}
+            isLoading={isLoading}
+            dataSource={hosts}
+            columns={columns}
+            pageSize={pageSize}
+            skeletonSize={skeletonSize} />
 }

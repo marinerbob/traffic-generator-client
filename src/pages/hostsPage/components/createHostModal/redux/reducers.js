@@ -18,12 +18,17 @@ export default createReducer(defaultState, builder => {
     });
 
     builder.addCase(CREATE_HOST_STARTED, state => {
-        state.isHostAdded = consts.CREATE_HOST_INIT;
+        state.hostAddingStatus = consts.CREATE_HOST_INIT;
     });
 
     builder.addCase(CREATE_HOST_FINISHED, (state, action) => {
-        const { formData, hostAddingStatus } = action.payload;
-        state.formData = formData;
+        const { hostAddingStatus } = action.payload;
+
         state.hostAddingStatus = hostAddingStatus;
+
+        if (hostAddingStatus === consts.CREATE_HOST_FINISHED) {
+            state.modalVisibility = false;
+            state.formData = defaultState.formData;
+        }
     });
 });

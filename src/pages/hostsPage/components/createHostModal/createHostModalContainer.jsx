@@ -1,43 +1,40 @@
 import React, { useState } from "react";
 
-import { Modal, Button } from "antd";
+import { useDispatch, useSelector } from 'react-redux';
 
+import { toggleCreateHostModal } from './redux/actions.js';
+import { getModalVisibility, getHostAddingStatus } from './redux/selectors.js';
+import consts from './redux/constants.js';
+
+import { Modal, Button } from "antd";
 import CreateHostForm from "./createHostForm";
 
 import "./createHostModal.scss";
 
+
 export default () => {
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  const modalVisibility = useSelector(getModalVisibility);
+  const hostAddingStatus = useSelector(getHostAddingStatus);
 
-  const handleOk = () => {
-    setConfirmLoading(true);
+  const isAddingLoading = hostAddingStatus === consts.CREATE_HOST_INIT;
 
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
+  const toggleModal = () => {
+    dispatch(toggleCreateHostModal());
   };
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button type="primary" onClick={toggleModal}>
         Добавить хост
       </Button>
       <Modal
         title="Окно добавления хоста"
-        visible={visible}
-        confirmLoading={confirmLoading}
+        visible={modalVisibility}
+        onCancel={toggleModal}
         footer={[
-          <Button key="create" form="create-host" type="primary" htmlType="submit" onClick={handleOk} loading={confirmLoading}>
+          <Button key="create" form="create-host" type="primary" htmlType="submit" loading={isAddingLoading}>
             Добавить хост
           </Button>
         ]}

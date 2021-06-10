@@ -86,7 +86,8 @@ const config = {
             common: path.resolve(SRC_DIR, 'common'),
             components: path.resolve(SRC_DIR, 'components'),
             reduxConfig: path.resolve(SRC_DIR, 'reduxConfig'),
-            shells: path.resolve(SRC_DIR, 'shells')
+            shells: path.resolve(SRC_DIR, 'shells'),
+            utils: path.resolve(SRC_DIR, 'utils')
         },
     }
 };
