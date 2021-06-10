@@ -39,6 +39,7 @@
     "webpack-notifier": "^1.13.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@reduxjs/toolkit": "^1.5.1",
     "antd": "^4.15.4",
     "connected-react-router": "^6.9.1",

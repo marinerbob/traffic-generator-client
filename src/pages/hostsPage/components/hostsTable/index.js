@@ -6,19 +6,27 @@ import { fetchHosts } from './redux/actions';
 import { getHostsValues, getLoadingState, getHostsLength } from './redux/selectors';
 import consts from './redux/constants';
 
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import DataTable from 'components/dataTable/dataTable.jsx';
+
+import './hostsTable.scss';
 
 const columns = [
   {
     title: "IP-адрес",
     dataIndex: "ip",
-    key: "ip"
+    key: "ip",
+    render: ip => (<>{ip}</>)
   },
   {
     title: "Имя",
     key: "name",
     dataIndex: "name"
+  },
+  {
+    render: () => (<><EditOutlined className="button-icon edit" /> <DeleteOutlined className="button-icon delete"/></>),
+    width: 100
   }
 ];
 
