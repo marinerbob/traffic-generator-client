@@ -3,17 +3,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createHost } from './redux/actions.js';
-import { getModalVisibility } from './redux/selectors.js';
-import consts from './redux/constants.js';
+import { getModalVisibility, testSelectorForSelect } from './redux/selectors.js';
 
-import { Input, Button } from "antd";
+import { Input } from "antd";
 
 import { Controller, useForm } from "react-hook-form";
+
+import ConnectedSelect from 'components/connectedSelect';
 
 
 
 export default () => {
-  const { control, reset, handleSubmit, watch } = useForm();
+  const { control, reset, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
   const modalVisibility = useSelector(getModalVisibility);
@@ -21,7 +22,7 @@ export default () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    dispatch(createHost(data));
+    // dispatch(createHost(data));
   };
 
   useEffect(() => {
@@ -45,8 +46,19 @@ export default () => {
         render={({ field }) => (
           <Input className="form-input" placeholder="Введите ip хоста" {...field} />
         )}
-        
       />
+      <Controller
+        name="users"
+        control={control}
+        defaultValue=""
+        render={({ field }) => 
+          (<ConnectedSelect 
+              dataSelector={testSelectorForSelect}
+              propKey="id"
+              propText="name"
+              {...field}
+          />)}
+        />
     </form>
   );
 };
