@@ -11,6 +11,9 @@ export const getHostsIds = createSelector(getHosts, hosts => getObjKeys(hosts));
 export const getHostsValues = createSelector(getHosts, hosts => getObjValues(hosts));
 export const getHostsLength = createSelector(getHostsValues, hosts => hosts.length);
 
-export const getHost = (state, id) => getHosts(state)[id];
+export const getHost = id => state => getHosts(state)[id];
+export const getHostName = id => state => getHost(id)(state).name;
 
 export const getLoadingState = state => getHostsTable(state).loadingState;
+
+export const getDeletedHostId = state => getHostsTable(state).deletedHostId;

@@ -6,9 +6,9 @@ import { fetchHosts } from './redux/actions';
 import { getHostsValues, getLoadingState, getHostsLength } from './redux/selectors';
 import consts from './redux/constants';
 
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-
 import DataTable from 'components/dataTable/dataTable.jsx';
+
+import DeleteHostButton from './deleteBtn.jsx';
 
 import './hostsTable.scss';
 
@@ -25,7 +25,9 @@ const columns = [
     dataIndex: "name"
   },
   {
-    render: () => (<><EditOutlined className="button-icon edit" /> <DeleteOutlined className="button-icon delete"/></>),
+    dataIndex: 'id',
+    key: 'id',
+    render: id => (<><DeleteHostButton hostId={id}/></>),
     width: 100
   }
 ];

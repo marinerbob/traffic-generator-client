@@ -21,8 +21,8 @@ export default ({ children }) => (
           style={{ height: "100%", borderRight: 0 }}
         >
           <Menu.Item key="/hosts"><Link to="/hosts">Хосты</Link></Menu.Item>
-          <Menu.Item key="/tasks"><Link to="/tasks">Задачи</Link></Menu.Item>
           <Menu.Item key="/users"><Link to="/users">Пользователи</Link></Menu.Item>
+          <Menu.Item key="/tasks"><Link to="/tasks">Задачи</Link></Menu.Item>
         </Menu>
       </Sider>
       <Content className="layout-content">{children}</Content>
