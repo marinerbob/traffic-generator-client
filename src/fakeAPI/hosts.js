@@ -1,18 +1,24 @@
+import { promisify } from './utils';
+
 let hostsData = [{
     ip: '10.1.1.1',
-    name: 'O-KS-NTP'
+    name: 'O-KS-NTP',
+    availableUsers: []
 },
 {
     ip: '10.1.1.2',
-    name: 'O-KS-DNS'
+    name: 'O-KS-DNS',
+    availableUsers: []
 },
 {
     ip: '10.1.1.3',
-    name: 'O-KS-AD'
+    name: 'O-KS-AD',
+    availableUsers: []
 },
 {
     ip: '10.1.1.4',
-    name: 'O-KS-FTPS'
+    name: 'O-KS-FTPS',
+    availableUsers: []
 }];
 
 export default () => {
