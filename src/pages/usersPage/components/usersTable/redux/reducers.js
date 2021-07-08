@@ -2,13 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { normalizeArr, deleteProp } from 'utils/reduxUtils.js';
 
-import { FETCH_DATA_START, FETCH_DATA_FINISH, DELETE_HOST_START, DELETE_HOST_FINISH, DELETE_HOST_REJECT } from './actionTypes';
+import { FETCH_DATA_START, FETCH_DATA_FINISH, DELETE_USER_START, DELETE_USER_FINISH, DELETE_USER_REJECT } from './actionTypes';
 import consts from 'utils/commonConsts';
 
 const defaultState = {
     loadingState: consts.loadingState.LOADING_STARTED,
     data: [],
-    deletedHostId: ''
+    deletedUserId: ''
 };
 
 export default createReducer(defaultState, builder => {
@@ -22,19 +22,19 @@ export default createReducer(defaultState, builder => {
         state.loadingState = loadingState;
     });
 
-    builder.addCase(DELETE_HOST_START, (state, action) => {
-        let { hostId } = action.payload;
+    builder.addCase(DELETE_USER_START, (state, action) => {
+        let { userId } = action.payload;
 
-        state.deletedHostId = hostId;
+        state.deletedUserId = userId;
     });
 
-    builder.addCase(DELETE_HOST_FINISH, (state) => {
-        state.data = deleteProp(state.data, state.deletedHostId);
+    builder.addCase(DELETE_USER_FINISH, (state) => {
+        state.data = deleteProp(state.data, state.deletedUserId);
 
-        state.deletedHostId = defaultState.deletedHostId;
+        state.deletedUserId = defaultState.deletedUserId;
     });
 
-    builder.addCase(DELETE_HOST_REJECT, state => {
-        state.deletedHostId = defaultState.deletedHostId;
+    builder.addCase(DELETE_USER_REJECT, state => {
+        state.deletedUserId = defaultState.deletedUserId;
     });
 });

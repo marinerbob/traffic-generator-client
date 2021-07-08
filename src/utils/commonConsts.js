@@ -4,4 +4,4 @@ export default {
         LOADING_FINISHED: 'LOADING_FINISHED',
         LOADING_ERRORED: 'LOADING_ERRORED'
     }
-}
+};

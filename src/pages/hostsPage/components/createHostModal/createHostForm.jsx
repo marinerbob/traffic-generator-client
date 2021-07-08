@@ -50,9 +50,9 @@ export default () => {
       <Controller
         name="users"
         control={control}
-        defaultValue=""
         render={({ field }) => 
           (<ConnectedSelect 
+              placeholder="Выберите пользователей"
               dataSelector={testSelectorForSelect}
               propKey="id"
               propText="name"

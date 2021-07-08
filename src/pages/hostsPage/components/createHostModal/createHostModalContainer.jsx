@@ -9,9 +9,6 @@ import consts from './redux/constants.js';
 import { Modal, Button } from "antd";
 import CreateHostForm from "./createHostForm";
 
-import "./createHostModal.scss";
-
-
 export default () => {
   const dispatch = useDispatch();
 

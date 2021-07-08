@@ -1,0 +1,1 @@
+export const getUsersPage = state => state.usersPage;

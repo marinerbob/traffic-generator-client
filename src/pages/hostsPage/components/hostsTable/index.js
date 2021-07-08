@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchHosts } from './redux/actions';
 import { getHostsValues, getLoadingState, getHostsLength } from './redux/selectors';
-import consts from './redux/constants';
+import consts from 'utils/commonConsts';
 
 import DataTable from 'components/dataTable/dataTable.jsx';
 
 import DeleteHostButton from './deleteBtn.jsx';
-
-import './hostsTable.scss';
 
 const columns = [
   {
@@ -28,12 +26,12 @@ const columns = [
     dataIndex: 'id',
     key: 'id',
     render: id => (<><DeleteHostButton hostId={id}/></>),
-    width: 100
+    width: 50
   }
 ];
 
 const pageSize = 8;
-const rowKey = "name";
+const rowKey = "id";
 
 export default () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 
 import { FETCH_DATA_START, FETCH_DATA_FINISH, DELETE_HOST_START, DELETE_HOST_FINISH, DELETE_HOST_REJECT } from './actionTypes';
 import { getDeletedHostId } from './selectors'; 
-import consts from './constants';
+import consts from 'utils/commonConsts';
 
 
 import fakeAPI from 'src/fakeAPI/hosts.js';

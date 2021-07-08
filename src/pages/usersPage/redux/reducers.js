@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default {};
+import usersTable from 'pages/usersPage/components/usersTable/redux/reducers';
+
+export default combineReducers({
+    usersTable
+});

@@ -1,14 +1,5 @@
 @import '~antd/dist/antd.css';
-
-@font-face {
-  font-family: "Comfortaa";
-  src: local("Comfortaa"),
-      url("/fonts/comfortaa/Comfortaa-Bold.ttf") format("truetype");
-}
-
-body {
-  font-family: Comfortaa, serif;
-}
+@import './tables.scss';
 
 .site-layout {
     min-height: 280px;
@@ -25,5 +16,9 @@ body {
   .ant-row-rtl #components-layout-demo-top .logo {
     float: right;
     margin: 16px 0 16px 24px;
+  }
+
+  .form-input {
+    margin: 5px 0;
   }
 
