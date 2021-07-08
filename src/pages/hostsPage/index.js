@@ -4,6 +4,7 @@ import { Typography } from "antd";
 
 import HostsTable from "./components/hostsTable";
 import CreateHostModalContainer from "./components/createHostModal";
+
 const { Title } = Typography;
 
 export default () => (
