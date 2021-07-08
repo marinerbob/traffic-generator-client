@@ -7,6 +7,19 @@ let tasksData = [{
     name: 'ftp'
 }];
 
+let taskTypes = [{
+    id: 1,
+    name: 'ssh'
+},  
+{
+    id: 2,
+    name: 'ftp'
+},
+{
+    id: 3,
+    name: 'mail'
+}];
+
 export default () => {
     const getTasks = () => {
         return new Promise((resolve, reject) => {
