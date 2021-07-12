@@ -5,10 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import consts from 'utils/commonConsts';
 
-export default (props) => {
-    const { allowClear, mode, onBlur, onChange, value, dataSelector, updateAction } = props;
+export default ({ selector, updateAction, selectProps, selectRef }) => {
     const dispatch = useDispatch();
-    const { data, loadingState } = useSelector(dataSelector);
+    const { data, loadingState } = useSelector(selector);
 
     let isEmpty   = data.length === 0;
     let isLoading = loadingState === consts.loadingState.LOADING_STARTED;
@@ -22,14 +21,10 @@ export default (props) => {
 
     return (
         <Select
-            mode={mode}
-            allowClear={allowClear}
+            ref={selectRef}
             notFoundContent={isLoading ? <Spin size="small" /> : null}
             onFocus={onFocus}
-            style={{ width: "100%" }}
-            onBlur={onBlur}
-            onChange={onChange}
-            defaultValue={value}
-            options={data} />
+            options={data}
+            {...selectProps} />
     );
 };

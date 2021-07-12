@@ -31,11 +31,10 @@ export default () => {
 
   return (
     <Form id="create-host" name="create-host" onFinish={handleSubmit(onSubmit)}>
-      {/* <Form.Item name="name" label="Наименование виртуальной машины">
+      <Form.Item name="name" label="Наименование виртуальной машины">
         <Controller
           name="name"
           control={control}
-          defaultValue=""
           render={({ field }) => (
             <Input className="form-input" placeholder="Введите имя хоста" {...field} />
           )}
@@ -45,7 +44,6 @@ export default () => {
         <Controller
           name="ip"
           control={control}
-          defaultValue=""
           render={({ field }) => (
             <Input className="form-input" placeholder="Введите ip хоста" {...field} />
           )}
@@ -60,7 +58,7 @@ export default () => {
             {...field}
           />)}
         />
-      </Form.Item> */}
+      </Form.Item>
     </Form>
   );
 };
