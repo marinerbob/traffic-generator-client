@@ -3,13 +3,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createHost } from './redux/actions.js';
-import { getModalVisibility, testSelectorForSelect } from './redux/selectors.js';
+import { getModalVisibility } from './redux/selectors.js';
 
-import { Input } from "antd";
+import { Input, Form, Row, Col, Slider, Switch, InputNumber, DatePicker } from "antd";
 
 import { Controller, useForm } from "react-hook-form";
 
-import ConnectedSelect from 'components/connectedSelect';
+import AddUsersSelect from './addUserSelect';
 
 
 
@@ -30,35 +30,37 @@ export default () => {
   }, [!modalVisibility])
 
   return (
-    <form id="create-host" name="create-host" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="name"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <Input className="form-input" placeholder="Введите имя хоста" {...field} />
-        )}
-      />
-      <Controller
-        name="ip"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <Input className="form-input" placeholder="Введите ip хоста" {...field} />
-        )}
-      />
-      <Controller
-        name="users"
-        control={control}
-        render={({ field }) => 
-          (<ConnectedSelect 
-              placeholder="Выберите пользователей"
-              dataSelector={testSelectorForSelect}
-              propKey="id"
-              propText="name"
-              {...field}
+    <Form id="create-host" name="create-host" onFinish={handleSubmit(onSubmit)}>
+      {/* <Form.Item name="name" label="Наименование виртуальной машины">
+        <Controller
+          name="name"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Input className="form-input" placeholder="Введите имя хоста" {...field} />
+          )}
+        />
+      </Form.Item>
+      <Form.Item name="ip" label="IP-адрес вируальной машины">
+        <Controller
+          name="ip"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Input className="form-input" placeholder="Введите ip хоста" {...field} />
+          )}
+        />
+      </Form.Item>
+      <Form.Item name="users" label="Подключаемые пользователи">
+        <Controller
+          name="users"
+          control={control}
+          render={({ field }) =>
+          (<AddUsersSelect
+            {...field}
           />)}
         />
-    </form>
+      </Form.Item> */}
+    </Form>
   );
 };

@@ -7,7 +7,7 @@ import consts from 'utils/commonConsts';
 
 const defaultState = {
     loadingState: consts.loadingState.LOADING_STARTED,
-    data: [],
+    data: {},
     deletedUserId: ''
 };
 

@@ -27,12 +27,13 @@ export default () => {
         Добавить хост
       </Button>
       <Modal
-        title="Окно добавления хоста"
+        title="Окно добавления задач"
         visible={modalVisibility}
         onCancel={toggleModal}
+        width={700}
         footer={[
           <Button key="create" form="create-host" type="primary" htmlType="submit" loading={isAddingLoading}>
-            Добавить хост
+            Добавить задачу
           </Button>
         ]}
       >

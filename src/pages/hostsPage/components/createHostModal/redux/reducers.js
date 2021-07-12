@@ -1,8 +1,11 @@
+import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
 import { TOGGLE_CREATE_HOST_MODAL,
     CREATE_HOST_STARTED,
     CREATE_HOST_FINISHED } from './actionTypes';
+
+import createSelectReducer from 'components/connectedSelect/redux/reducers.js';
 
 import consts from './constants';
 
@@ -12,7 +15,7 @@ const defaultState = {
     formData: {},
 };
 
-export default createReducer(defaultState, builder => {
+const modalFormState = createReducer(defaultState, builder => {
     builder.addCase(TOGGLE_CREATE_HOST_MODAL, state => {
         state.modalVisibility = !state.modalVisibility;
     });
@@ -32,3 +35,8 @@ export default createReducer(defaultState, builder => {
         }
     });
 });
+
+export default combineReducers({
+    modalFormState,
+    usersSelect: createSelectReducer('usersSelect') 
+})

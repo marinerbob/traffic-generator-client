@@ -61,8 +61,18 @@ export default () => {
         });
     }
 
+    const getUsersForSelect = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const selectData = usersData.map(user => ({ label: user.login, value: user.id }));
+                resolve(selectData);
+            }, 2000);
+        });
+    }
+
     return {
         getUsers,
-        addUser
+        addUser,
+        getUsersForSelect
     };
 }

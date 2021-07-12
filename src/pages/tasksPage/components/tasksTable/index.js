@@ -9,6 +9,7 @@ import consts from 'utils/commonConsts';
 import DataTable from 'components/dataTable/dataTable.jsx';
 
 import DeleteTaskButton from './deleteBtn.jsx';
+import { Switch } from "antd";
 
 const columns = [
   {
@@ -17,10 +18,15 @@ const columns = [
     key: "name"
   },
   {
+    title: 'Статус активности задачи',
+    width: 150,
+    render: () => (<Switch defaultChecked />)
+  },
+  {
     dataIndex: 'id',
     key: 'id',
     render: id => (<><DeleteTaskButton taskId={id}/></>),
-    width: 50
+    width: 70
   }
 ];
 
