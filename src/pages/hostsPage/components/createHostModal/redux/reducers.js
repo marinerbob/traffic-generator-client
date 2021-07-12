@@ -38,5 +38,5 @@ const modalFormState = createReducer(defaultState, builder => {
 
 export default combineReducers({
     modalFormState,
-    usersSelect: createSelectReducer('usersSelect') 
+    usersSelect: createSelectReducer(consts.USERS_SELECT_NAME) 
 })
