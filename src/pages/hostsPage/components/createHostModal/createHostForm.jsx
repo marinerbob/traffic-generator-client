@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createHost } from './redux/actions.js';
-import { getModalVisibility } from './redux/selectors.js';
+import { getCreateHostModalVisibility } from './redux/selectors.js';
 
 import { Input, Form, Row, Col, Slider, Switch, InputNumber, DatePicker } from "antd";
 
@@ -17,7 +17,7 @@ export default () => {
   const { control, reset, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
-  const modalVisibility = useSelector(getModalVisibility);
+  const modalVisibility = useSelector(getCreateHostModalVisibility);
 
   const onSubmit = (data) => {
     console.log(data);

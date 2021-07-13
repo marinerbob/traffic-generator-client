@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import { TOGGLE_CREATE_HOST_MODAL,
-    CREATE_HOST_STARTED,
+import { CREATE_HOST_STARTED,
     CREATE_HOST_FINISHED } from './actionTypes';
 
 import createSelectReducer from 'components/connectedSelect/redux/reducers.js';
@@ -10,16 +9,11 @@ import createSelectReducer from 'components/connectedSelect/redux/reducers.js';
 import consts from './constants';
 
 const defaultState = {
-    modalVisibility: false,
     hostAddingStatus: consts.CREATE_HOST_FINISHED,
     formData: {},
 };
 
 const modalFormState = createReducer(defaultState, builder => {
-    builder.addCase(TOGGLE_CREATE_HOST_MODAL, state => {
-        state.modalVisibility = !state.modalVisibility;
-    });
-
     builder.addCase(CREATE_HOST_STARTED, state => {
         state.hostAddingStatus = consts.CREATE_HOST_INIT;
     });

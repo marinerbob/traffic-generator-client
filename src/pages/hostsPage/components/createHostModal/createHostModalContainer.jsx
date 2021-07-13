@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleCreateHostModal } from './redux/actions.js';
-import { getModalVisibility, getHostAddingStatus } from './redux/selectors.js';
+import { getCreateHostModalVisibility, getHostAddingStatus } from './redux/selectors.js';
 import consts from './redux/constants.js';
 
 import { Modal, Button } from "antd";
@@ -12,13 +12,13 @@ import CreateHostForm from "./createHostForm";
 export default () => {
   const dispatch = useDispatch();
 
-  const modalVisibility = useSelector(getModalVisibility);
+  const modalVisibility = useSelector(getCreateHostModalVisibility);
   const hostAddingStatus = useSelector(getHostAddingStatus);
 
   const isAddingLoading = hostAddingStatus === consts.CREATE_HOST_INIT;
 
   const toggleModal = () => {
-    dispatch(toggleCreateHostModal());
+    dispatch(toggleCreateHostModal);
   };
 
   return (

@@ -12,8 +12,9 @@ import usersAPI from 'src/fakeAPI/users';
 import { fetchHosts } from 'pages/hostsPage/components/hostsTable/redux/actions';
 
 import { fetchSelectDataStart, fetchSelectDataFinish } from 'components/connectedSelect/redux/actions.js'; 
+import { toggleModalVisibility } from 'components/connectedModal/redux/actions';
 
-export const toggleCreateHostModal = createAction(TOGGLE_CREATE_HOST_MODAL);
+export const toggleCreateHostModal = toggleModalVisibility({ modalId: consts.CREATE_HOST_MODAL_NAME });
 
 const __createHostStarted = createAction(CREATE_HOST_STARTED);
 const __createHostFinished = createAction(CREATE_HOST_FINISHED);

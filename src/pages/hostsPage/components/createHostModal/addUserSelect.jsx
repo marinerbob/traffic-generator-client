@@ -11,6 +11,7 @@ export default React.forwardRef((props, ref) => {
         mode: 'multiple',
         style: { width: '100%' },
         placeholder: 'Выберите подключаемых пользователей из списка',
+        showSearch: false,
         ...props
     };
 

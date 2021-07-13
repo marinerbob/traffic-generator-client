@@ -17,3 +17,13 @@ export const deleteProp = (obj, propName) => {
 
     return obj;
 };
+
+export const toggleProp = (obj, propName) => {
+    if (obj.hasOwnProperty(propName)) {
+        delete obj[propName];
+    } else {
+        obj[propName] = true;
+    }
+
+    return obj;
+};
