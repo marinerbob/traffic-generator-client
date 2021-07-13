@@ -42,7 +42,7 @@ const config = {
                 ]
             },
             {
-                test: /\.(woff(2)?|ttf|eot|png|svg|jpg|gif|pdf)$/,
+                test: /\.(woff(2)?|ttf|eot|png|svg|jpg|gif|pdf|ico)$/,
                 type: 'asset/resource'
             }
         ]
@@ -50,7 +50,8 @@ const config = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(PUBLIC_DIR, 'index.html')
+            template: path.resolve(PUBLIC_DIR, 'index.html'),
+            favicon: path.resolve(PUBLIC_DIR, 'favicon.ico')
         }),
         new WebpackNotifierPlugin({ alwaysNotify: false })
     ],

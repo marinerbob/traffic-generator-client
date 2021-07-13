@@ -24,7 +24,6 @@ const modalFormState = createReducer(defaultState, builder => {
         state.hostAddingStatus = hostAddingStatus;
 
         if (hostAddingStatus === consts.CREATE_HOST_FINISHED) {
-            state.modalVisibility = false;
             state.formData = defaultState.formData;
         }
     });

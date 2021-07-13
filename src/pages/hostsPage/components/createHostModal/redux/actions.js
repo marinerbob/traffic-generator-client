@@ -38,8 +38,8 @@ export const createHost = formData => dispatch => {
     });
 };
 
-const __fetchUsersSelectDataStart = fetchSelectDataStart('usersSelect');
-const __fetchUsersSelectDataFinish = fetchSelectDataFinish('usersSelect');
+const __fetchUsersSelectDataStart = fetchSelectDataStart(consts.USERS_SELECT_NAME);
+const __fetchUsersSelectDataFinish = fetchSelectDataFinish(consts.USERS_SELECT_NAME);
 
 export const fetchUsersForSelect = () => dispatch => {
     dispatch(__fetchUsersSelectDataStart());
@@ -55,5 +55,5 @@ export const fetchUsersForSelect = () => dispatch => {
             data: [],
             loadingState: commonConsts.loadingState.LOADING_ERRORED
         }));
-    })
-}
+    });
+};
