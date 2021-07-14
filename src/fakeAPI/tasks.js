@@ -3,7 +3,7 @@ let tasksData = [{
     name: 'ssh'
 },
 {
-    ip: 2,
+    id: 2,
     name: 'ftp'
 }];
 
@@ -36,10 +36,19 @@ export default () => {
                 resolve(true);
             }, 2000)
         });
-    }
+    };
+
+    const getTaskTypes = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(taskTypes);
+            }, 2000);
+        });
+    };
 
     return {
         getTasks,
         addTask,
+        getTaskTypes
     };
 }
