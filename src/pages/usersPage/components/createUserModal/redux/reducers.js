@@ -1,6 +1,9 @@
-import { combineReducers } from "redux";
+import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 
 import createSelectReducer from 'components/connectedSelect/redux/reducers.js';
+
+import consts from './constants';
 
 import { CREATE_USER_STARTED,
     CREATE_USER_FINISHED } from './actionTypes';
@@ -27,9 +30,9 @@ const modalFormState = createReducer(defaultState, builder => {
 });
 
 const selects = combineReducers({
-    departmentsSelect: createSelectReducer('createUserModal/departments'),
-    organizationsSelect: createSelectReducer('createUserModal/organizations'),
-    titlesSelect: createSelectReducer('createUserModal/titles')
+    departmentsSelect: createSelectReducer(consts.DEPS_SELECT_NAME),
+    organizationsSelect: createSelectReducer(consts.ORGS_SELECT_NAME),
+    titlesSelect: createSelectReducer(consts.TITLES_SELECT_NAME)
 });
 
 export default combineReducers({
