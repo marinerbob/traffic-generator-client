@@ -30,8 +30,8 @@ export default () => {
   }, [!modalVisibility])
 
   return (
-    <Form id="create-host" name="create-host" onFinish={handleSubmit(onSubmit)}>
-      <Form.Item name="name" label="Наименование виртуальной машины">
+    <Form labelCol={{ span: 5 }} wrapperCol={{ span: 20 }} id="create-host" name="create-host" onFinish={handleSubmit(onSubmit)}>
+      <Form.Item name="name" label="Имя">
         <Controller
           name="name"
           control={control}
@@ -40,7 +40,7 @@ export default () => {
           )}
         />
       </Form.Item>
-      <Form.Item name="ip" label="IP-адрес вируальной машины">
+      <Form.Item name="ip" label="IP-адрес">
         <Controller
           name="ip"
           control={control}
@@ -49,7 +49,7 @@ export default () => {
           )}
         />
       </Form.Item>
-      <Form.Item name="users" label="Подключаемые пользователи">
+      <Form.Item name="users" label="Пользователи">
         <Controller
           name="users"
           control={control}

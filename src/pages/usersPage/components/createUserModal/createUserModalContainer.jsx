@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleCreateUserModal } from './redux/actions.js';
-import { getCreateHostModalVisibility, getHostAddingStatus } from './redux/selectors.js';
+import { getCreateUserModalVisibility, getUserAddingStatus } from './redux/selectors.js';
 import consts from './redux/constants.js';
 
 import { Modal, Button } from "antd";
@@ -12,13 +12,13 @@ import CreateUserForm from "./createUserForm";
 export default () => {
   const dispatch = useDispatch();
 
-  const modalVisibility = useSelector(getCreateHostModalVisibility);
-  const hostAddingStatus = useSelector(getHostAddingStatus);
+  const modalVisibility = useSelector(getCreateUserModalVisibility);
+  const userAddingStatus = useSelector(getUserAddingStatus);
 
-  const isAddingLoading = hostAddingStatus === consts.CREATE_HOST_INIT;
+  const isAddingLoading = userAddingStatus === consts.CREATE_USER_INIT;
 
   const toggleModal = () => {
-    dispatch(toggleCreateHostModal);
+    dispatch(toggleCreateUserModal);
   };
 
   return (

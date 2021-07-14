@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit';
+
 import usersAPI from 'src/fakeAPI/users';
 import { getOrganizations, getTitles, getDepartments } from 'src/fakeAPI/other';
 
@@ -10,6 +12,8 @@ import { fetchSelectDataStart, fetchSelectDataFinish } from 'components/connecte
 import { toggleModalVisibility } from 'components/connectedModal/redux/actions';
 
 import { CREATE_USER_STARTED, CREATE_USER_FINISHED } from './actionTypes';
+
+const mapToSelect = data => data.map(el => ({ label: el.name, value: el.id }));
 
 const __createUserStarted = createAction(CREATE_USER_STARTED);
 const __createUserFinished = createAction(CREATE_USER_FINISHED);
@@ -49,7 +53,7 @@ export const fetchOrgs = () => dispatch => {
 
     getOrganizations().then(data => {
         dispatch(__fetchOrgsSelectDataFinish({
-            data,
+            data: mapToSelect(data),
             loadingState: commonConsts.loadingState.LOADING_FINISHED
         }));
     })
@@ -66,7 +70,7 @@ export const fetchDeps = () => dispatch => {
 
     getDepartments().then(data => {
         dispatch(__fetchDepsSelectDataFinish({
-            data,
+            data: mapToSelect(data),
             loadingState: commonConsts.loadingState.LOADING_FINISHED
         }));
     })
@@ -83,7 +87,7 @@ export const fetchTitles = () => dispatch => {
 
     getTitles().then(data => {
         dispatch(__fetchTitlesSelectDataFinish({
-            data,
+            data: mapToSelect(data),
             loadingState: commonConsts.loadingState.LOADING_FINISHED
         }));
     })
