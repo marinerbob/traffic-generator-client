@@ -1,9 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import usersAPI from 'src/fakeAPI/users';
+import tasksAPI from 'src/fakeAPI/tasks';
 import { getOrganizations, getTitles, getDepartments } from 'src/fakeAPI/other';
 
-import { fetchUsers } from 'pages/usersPage/components/usersTable/redux/actions';
+import { fetchTasks } from 'pages/tasksPage/components/tasksTable/redux/actions';
 
 import consts from './constants';
 import commonConsts from 'utils/commonConsts';
@@ -11,30 +11,30 @@ import commonConsts from 'utils/commonConsts';
 import { fetchSelectDataStart, fetchSelectDataFinish } from 'components/connectedSelect/redux/actions.js';
 import { toggleModalVisibility } from 'components/connectedModal/redux/actions';
 
-import { CREATE_USER_STARTED, CREATE_USER_FINISHED } from './actionTypes';
+import { CREATE_TASK_STARTED, CREATE_TASK_FINISHED } from './actionTypes';
 
 const mapToSelect = data => data.map(el => ({ label: el.name, value: el.id }));
 
-const __createUserStarted = createAction(CREATE_USER_STARTED);
-const __createUserFinished = createAction(CREATE_USER_FINISHED);
+const __createTaskStarted = createAction(CREATE_TASK_STARTED);
+const __createTaskFinished = createAction(CREATE_TASK_FINISHED);
 
-const api = usersAPI();
+const api = tasksAPI();
 
-export const toggleCreateUserModal = toggleModalVisibility({ modalId: consts.CREATE_USER_MODAL_NAME });
+export const toggleCreateTaskModal = toggleModalVisibility({ modalId: consts.CREATE_TASK_MODAL_NAME });
 
-export const createUser = formData => dispatch => {
-    dispatch(__createUserStarted());
+export const createTask = formData => dispatch => {
+    dispatch(__createTaskStarted());
 
-    api.addUser(formData).then(() => {
+    api.addTask(formData).then(() => {
         dispatch(__createHostFinished({
             hostAddingStatus: consts.CREATE_HOST_FINISHED
         }));
-        dispatch(toggleCreateUserModal);
-        dispatch(fetchUsers());
+        dispatch(toggleCreateTaskModal);
+        dispatch(fetchTasks());
     })
     .catch(err => {
-        dispatch(__createUserFinished({
-            hostAddingStatus: consts.CREATE_USER_ERRORED
+        dispatch(__createTaskFinished({
+            hostAddingStatus: consts.CREATE_TASK_ERRORED
         }));
     })
 };

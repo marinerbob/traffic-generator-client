@@ -2,42 +2,42 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleCreateUserModal } from './redux/actions.js';
-import { getCreateUserModalVisibility, getUserAddingStatus } from './redux/selectors.js';
+import { toggleCreateTaskModal } from './redux/actions.js';
+import { getCreateTaskModalVisibility, getTaskAddingStatus } from './redux/selectors.js';
 import consts from './redux/constants.js';
 
 import { Modal, Button } from "antd";
-import CreateUserForm from "./createUserForm";
+import CreateTaskForm from "./createTaskForm";
 
 export default () => {
   const dispatch = useDispatch();
 
-  const modalVisibility = useSelector(getCreateUserModalVisibility);
-  const userAddingStatus = useSelector(getUserAddingStatus);
+  const modalVisibility = useSelector(getCreateTaskModalVisibility);
+  const taskAddingStatus = useSelector(getTaskAddingStatus);
 
-  const isAddingLoading = userAddingStatus === consts.CREATE_USER_INIT;
+  const isAddingLoading = taskAddingStatus === consts.CREATE_TASK_INIT;
 
   const toggleModal = () => {
-    dispatch(toggleCreateUserModal);
+    dispatch(toggleCreateTaskModal);
   };
 
   return (
     <>
       <Button type="primary" onClick={toggleModal}>
-        Добавить пользователя
+        Добавить задачу
       </Button>
       <Modal
-        title="Окно добавления пользователя"
+        title="Окно добавления задачи"
         visible={modalVisibility}
         onCancel={toggleModal}
         width={700}
         footer={[
-          <Button key="create" form="create-user" type="primary" htmlType="submit" loading={isAddingLoading}>
-            Добавить пользователя
+          <Button key="create" form="create-task" type="primary" htmlType="submit" loading={isAddingLoading}>
+            Добавить задачу
           </Button>
         ]}
       >
-        <CreateUserForm />
+        <CreateTaskForm />
       </Modal>
     </>
   );

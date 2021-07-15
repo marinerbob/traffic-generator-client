@@ -1,11 +1,39 @@
 let tasksData = [{
     id: 1,
-    name: 'ssh'
+    name: 'SSH for Okrug',
+    taskTypeId: 1,
+    taskType: 'ssh',
+    senderId: 1,
+    sender: 'O-KS-DNS',
+    receiverId: 3,
+    receiver: 'O-KS-FTPS',
+    isActive: true,
+    isRepeatable: true,
+    isUnix: true,
+    repeats: 10,
+    delay: 100,
+    startTime: '11:35',
+    userId: 1,
+    userLogin: 'bugaev_v'
 },
 {
     id: 2,
-    name: 'ftp'
-}];
+    name: 'FTP for Okrug',
+    taskTypeId: 2,
+    taskType: 'ftp',
+    senderId: 1,
+    sender: 'O-KS-DNS',
+    receiverId: 3,
+    receiver: 'O-KS-FTPS',
+    isActive: true,
+    isRepeatable: true,
+    isUnix: true,
+    repeats: 10,
+    delay: 100,
+    startTime: '11:20',
+    userId: 1,
+    userLogin: 'bugaev_v'
+},];
 
 let taskTypes = [{
     id: 1,

@@ -9,24 +9,92 @@ import consts from 'utils/commonConsts';
 import DataTable from 'components/dataTable/dataTable.jsx';
 
 import DeleteTaskButton from './deleteBtn.jsx';
-import { Switch } from "antd";
+import { Switch, Tag } from "antd";
 
 const columns = [
   {
-    title: "Название задачи",
-    dataIndex: "name",
-    key: "name"
+    title: 'Название задачи',
+    dataIndex: 'name',
+    key: 'name',
+    width: 250,
+    fixed: 'left'
   },
   {
-    title: 'Статус активности задачи',
+    title: 'Задача активна',
+    dataIndex: 'isActive',
+    key: 'isActive',
     width: 150,
-    render: () => (<Switch defaultChecked />)
+    fixed: 'left',
+    align: 'center',
+    render: isActive => (<Switch checked={isActive} />)
+  },
+  {
+    title: 'Тип задачи',
+    dataIndex: 'taskType',
+    key: 'taskTypeId',
+    width: 200,
+    align: 'center',
+    render: taskType => (<Tag color="cyan">{taskType}</Tag>)
+  },
+  {
+    title: 'Хост-отправитель',
+    dataIndex: 'sender',
+    key: 'senderId',
+    width: 200
+  },
+  {
+    title: 'Хост-получатель',
+    dataIndex: 'receiver',
+    key: 'receiverId',
+    width: 200
+  },
+  {
+    title: 'Задача повторяема',
+    dataIndex: 'isRepeatable',
+    key: 'isRepeatable',
+    width: 150,
+    align: 'center',
+    render: isRep => (<Switch disabled checked={isRep} />)
+  },
+  {
+    title: 'Для Unix машин',
+    dataIndex: 'isUnix',
+    key: 'isUnix',
+    width: 150,
+    align: 'center',
+    render: isUnix => (<Switch disabled checked={isUnix} />)
+  },
+  {
+    title: 'Повторений',
+    dataIndex: 'repeats',
+    key: 'repeats',
+    width: 100
+  },
+  {
+    title: 'Пауза перед стартом',
+    dataIndex: 'delay',
+    key: 'delay',
+    width: 150
+  },
+  {
+    title: 'Время запуска задачи',
+    dataIndex: 'startTime',
+    key: 'startTime',
+    width: 150
+  },
+  {
+    title: 'Пользователь-отправитель',
+    dataIndex: 'userLogin',
+    key: 'userId',
+    width: 200
   },
   {
     dataIndex: 'id',
     key: 'id',
+    width: 70,
+    fixed: 'right',
+    align: 'center',
     render: id => (<><DeleteTaskButton taskId={id}/></>),
-    width: 70
   }
 ];
 
@@ -52,5 +120,7 @@ export default () => {
             dataSource={tasks}
             columns={columns}
             pageSize={pageSize}
-            skeletonSize={skeletonSize} />
+            skeletonSize={skeletonSize}
+            isScrollable={true}
+            scroll={{ x: 1500 }} />
 }

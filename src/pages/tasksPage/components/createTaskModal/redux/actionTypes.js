@@ -1,2 +1,2 @@
-export const CREATE_USER_STARTED = 'createUserModal/CREATE_USER_STARTED';
-export const CREATE_USER_FINISHED = 'createUserModal/CREATE_USER_FINISHED';
+export const CREATE_TASK_STARTED = 'createTaskModal/CREATE_TASK_STARTED';
+export const CREATE_TASK_FINISHED = 'createTaskModal/CREATE_TASK_FINISHED';

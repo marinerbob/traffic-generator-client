@@ -1,11 +1,12 @@
 import React from 'react'
 import { Table, Skeleton } from 'antd';
 
-const SkeletonTable = ({ columns, rowCount }) => {
+const SkeletonTable = ({ columns, rowCount, scroll }) => {
   return (
     <Table
       rowKey="key"
       pagination={false}
+      scroll={scroll}
       dataSource={[...Array(rowCount)].map((_, index) => ({
         key: `key${index}`,
       }))}

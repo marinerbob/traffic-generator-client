@@ -1,3 +1,3 @@
-import CreateUserModalContainer from "./createUserModalContainer.jsx";
+import CreateTaskModalContainer from "./createTaskModalContainer.jsx";
 
-export default CreateUserModalContainer;
+export default CreateTaskModalContainer;

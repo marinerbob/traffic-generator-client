@@ -5,34 +5,34 @@ import createSelectReducer from 'components/connectedSelect/redux/reducers.js';
 
 import consts from './constants';
 
-import { CREATE_USER_STARTED,
-    CREATE_USER_FINISHED } from './actionTypes';
+import { CREATE_TASK_STARTED,
+    CREATE_TASK_FINISHED } from './actionTypes';
 
 const defaultState = {
-    userAddingStatus: consts.CREATE_USER_FINISHED,
+    taskAddingStatus: consts.CREATE_TASK_FINISHED,
     formData: {},
 };
 
 const modalFormState = createReducer(defaultState, builder => {
-    builder.addCase(CREATE_USER_STARTED, state => {
-        state.userAddingStatus = consts.CREATE_USER_INIT;
+    builder.addCase(CREATE_TASK_STARTED, state => {
+        state.taskAddingStatus = consts.CREATE_TASK_INIT;
     });
 
-    builder.addCase(CREATE_USER_FINISHED, (state, action) => {
-        const { userAddingStatus } = action.payload;
+    builder.addCase(CREATE_TASK_FINISHED, (state, action) => {
+        const { taskAddingStatus } = action.payload;
 
-        state.userAddingStatus = userAddingStatus;
+        state.taskAddingStatus = taskAddingStatus;
 
-        if (userAddingStatus === consts.CREATE_USER_FINISHED) {
+        if (taskAddingStatus === consts.CREATE_TASK_FINISHED) {
             state.formData = defaultState.formData;
         }
     });
 });
 
 const selects = combineReducers({
-    departmentsSelect: createSelectReducer(consts.DEPS_SELECT_NAME),
-    organizationsSelect: createSelectReducer(consts.ORGS_SELECT_NAME),
-    titlesSelect: createSelectReducer(consts.TITLES_SELECT_NAME)
+    taskTypesSelect: createSelectReducer(consts.TASK_TYPES_SELECT_NAME),
+    hostsSelect: createSelectReducer(consts.HOSTS_SELECT_NAME),
+    usersSelect: createSelectReducer(consts.USERS_SELECT_NAME)
 });
 
 export default combineReducers({
