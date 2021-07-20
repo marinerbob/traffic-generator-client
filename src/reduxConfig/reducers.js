@@ -10,10 +10,7 @@ import tasksPage from 'pages/tasksPage/redux/reducers';
 
 const createRootReducer = history => combineReducers({
     router: connectRouter(history),
-    overallUI: {
-        modals,
-        selects: {}
-    },
+    modals,
     hostsPage,
     usersPage,
     tasksPage
