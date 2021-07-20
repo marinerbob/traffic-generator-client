@@ -106,7 +106,7 @@ export default () => {
           name="repeats"
           control={control}
           render={({ field }) => (
-            <Slider step={1} min={1} max={100} {...field} />
+            <Slider marks={{ 1: '1', 300: '300' }} step={1} min={1} max={300} {...field} />
           )}
         />
       </Form.Item>
