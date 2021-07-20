@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTask } from './redux/actions.js';
 import { getCreateTaskModalVisibility } from './redux/selectors.js';
 
-import { Input, Form, Slider, Switch, InputNumber } from "antd";
+import { Input, Form, Slider, Switch, InputNumber, DatePicker, Row, Col } from "antd";
 
 import { Controller, useForm } from "react-hook-form";
 
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import dayjs from 'dayjs';
-import DatePicker from './datepicker';
-
 
 export default () => {
   const { control, reset, handleSubmit } = useForm();
@@ -28,8 +26,8 @@ export default () => {
 
   console.log('rendered');
 
-  const disabledDate = () => {
-    return dayjs();
+  const disabledDate = (current) => {
+    return current && current < dayjs();
   }
 
   useEffect(() => {
@@ -37,7 +35,7 @@ export default () => {
   }, [!modalVisibility])
 
   return (
-    <Form labelCol={{ span: 5 }} wrapperCol={{ span: 20 }} id="create-task" name="create-task" onFinish={handleSubmit(onSubmit)}>
+    <Form labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} id="create-task" name="create-task" onFinish={handleSubmit(onSubmit)}>
       <Form.Item name="name" label="Наименование">
         <Controller
           name="name"
@@ -58,79 +56,81 @@ export default () => {
           />)}
         />
       </Form.Item> */}
-      <Form.Item name="name" label="Отправитель">
+      <Form.Item name="sender" label="Отправитель">
         <Controller
-          name="name"
+          name="sender"
           control={control}
           render={({ field }) => (
             <Input className="form-input" {...field} />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" placeholder="Введите имя хоста" label="Получатель">
+      <Form.Item name="receiver" placeholder="Введите имя хоста" label="Получатель">
         <Controller
-          name="name"
+          name="receiver"
           control={control}
           render={({ field }) => (
             <Input className="form-input" placeholder="Введите имя хоста" {...field} />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" label="Включить задачу">
+      <Form.Item name="isActive" label="Включить задачу">
         <Controller
-          name="name"
+          name="isActive"
           control={control}
           render={({ field }) => (
             <Switch {...field} checked={field.value} />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" label="Повторяемая">
+      <Form.Item name="isRepeatable" label="Повторяемая">
         <Controller
-          name="name"
+          name="isRepeatable"
           control={control}
           render={({ field }) => (
             <Switch {...field} checked={field.value} />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" label="Для unix">
+      <Form.Item name="isUnix" label="Для unix">
         <Controller
-          name="name"
+          name="isUnix"
           control={control}
           render={({ field }) => (
             <Switch {...field} checked={field.value} />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" label="Число повторений">
+      <Form.Item name="repeats" label="Число повторений">
         <Controller
-          name="name"
+          name="repeats"
           control={control}
           render={({ field }) => (
             <Slider step={1} min={1} max={100} {...field} />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" label="Отложенный запуск">
+      <Form.Item name="delay" label="Отложенный запуск">
         <Controller
-          name="name"
+          name="delay"
           control={control}
           render={({ field }) => (
-            <InputNumber {...field} />
+            <InputNumber {...field} className="form-input" />
           )}
         />
       </Form.Item>
-      <Form.Item name="name" label="Время запуска">
+      <Form.Item name="startTime" label="Время запуска">
         <Controller
-          name="name"
+          name="startTime"
           control={control}
           render={({ field }) => (
             <DatePicker disabledDate={disabledDate}
-                        format="YYYY-MM-DD HH:mm:ss"
-                        locale={locale} 
-                        placeholder="Выберите дату" 
-                        {...field} />
+              format="YYYY-MM-DD HH:mm:ss"
+              locale={locale}
+              placeholder="Выберите дату"
+              showTime={true}
+              className="form-input"
+              {...field} />
           )}
         />
       </Form.Item>
