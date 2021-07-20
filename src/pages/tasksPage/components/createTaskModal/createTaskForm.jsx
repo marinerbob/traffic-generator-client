@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTask } from './redux/actions.js';
 import { getCreateTaskModalVisibility } from './redux/selectors.js';
 
-import { Input, Form, Slider, Switch, InputNumber, DatePicker, Row, Col } from "antd";
+import { Input, Form, Slider, Switch, DatePicker, TimePicker} from "antd";
 
 import { Controller, useForm } from "react-hook-form";
 
@@ -41,7 +41,7 @@ export default () => {
           name="name"
           control={control}
           render={({ field }) => (
-            <Input className="form-input" placeholder="Введите наименование задачи" {...field} />
+            <Input placeholder="Введите наименование задачи" {...field} />
           )}
         />
       </Form.Item>
@@ -61,7 +61,7 @@ export default () => {
           name="sender"
           control={control}
           render={({ field }) => (
-            <Input className="form-input" {...field} />
+            <Input {...field} />
           )}
         />
       </Form.Item>
@@ -70,7 +70,7 @@ export default () => {
           name="receiver"
           control={control}
           render={({ field }) => (
-            <Input className="form-input" placeholder="Введите имя хоста" {...field} />
+            <Input placeholder="Введите имя хоста" {...field} />
           )}
         />
       </Form.Item>
@@ -106,7 +106,7 @@ export default () => {
           name="repeats"
           control={control}
           render={({ field }) => (
-            <Slider marks={{ 1: '1', 300: '300' }} step={1} min={1} max={300} {...field} />
+            <Slider marks={{ 1: '1', 100: '100' }} step={1} min={1} max={100} {...field} />
           )}
         />
       </Form.Item>
@@ -115,7 +115,7 @@ export default () => {
           name="delay"
           control={control}
           render={({ field }) => (
-            <InputNumber {...field} className="form-input" />
+            <TimePicker {...field} style={{ width: '100%' }} placeholder="Выберите время до запуска" />
           )}
         />
       </Form.Item>
@@ -129,7 +129,7 @@ export default () => {
               locale={locale}
               placeholder="Выберите дату"
               showTime={true}
-              className="form-input"
+              style={{ width: '100%' }}
               {...field} />
           )}
         />
