@@ -11,6 +11,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import dayjs from 'dayjs';
+import './createTaskModal.scss';
 
 export default () => {
   const { control, reset, handleSubmit } = useForm();
@@ -74,7 +75,9 @@ export default () => {
           )}
         />
       </Form.Item>
-      <Form.Item name="isActive" label="Включить задачу">
+      <Form.Item wrapperCol={{ offset: 6 }} className="nested-form-item">
+        <div className="form-group">
+        <Form.Item name="isActive" label="Включить задачу">
         <Controller
           name="isActive"
           control={control}
@@ -101,6 +104,9 @@ export default () => {
           )}
         />
       </Form.Item>
+        </div>
+      </Form.Item>
+
       <Form.Item name="repeats" label="Число повторений">
         <Controller
           name="repeats"
