@@ -2,20 +2,19 @@ import React from 'react';
 
 import AsyncSelect from 'components/connectedSelect/asyncSelect.jsx';
 
-import { fetchTaskTypes } from './redux/actions'; 
-import { getTaskTypesSelectState } from './redux/selectors';
+import { fetchStatuses } from './redux/actions'; 
+import { getStatusesSelectState } from './redux/selectors';
 
 export default React.forwardRef((props, ref) => {
     const selectProps = {
-        style: { width: '100%' },
-        placeholder: 'Выберите тип задачи',
+        placeholder: 'Выберите статус задачи',
         ...props
     };
 
     return (<AsyncSelect
                 selectRef={ref}
                 selectProps={selectProps}
-                selector={getTaskTypesSelectState}
-                updateAction={fetchTaskTypes}
+                selector={getStatusesSelectState}
+                updateAction={fetchStatuses}
     />)
 });

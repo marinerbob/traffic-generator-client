@@ -1,7 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import tasksAPI from 'src/fakeAPI/tasks';
-import { getOrganizations, getTitles, getDepartments } from 'src/fakeAPI/other';
+import usersAPI from 'src/fakeAPI/users';
+import hostsAPI from 'src/fakeAPI/hosts';
 
 import { fetchTasks } from 'pages/tasksPage/components/tasksTable/redux/actions';
 
@@ -19,6 +20,8 @@ const __createTaskStarted = createAction(CREATE_TASK_STARTED);
 const __createTaskFinished = createAction(CREATE_TASK_FINISHED);
 
 const api = tasksAPI();
+const users = usersAPI();
+const hosts = hostsAPI();
 
 export const toggleCreateTaskModal = toggleModalVisibility({ modalId: consts.CREATE_TASK_MODAL_NAME });
 
@@ -39,60 +42,80 @@ export const createTask = formData => dispatch => {
     })
 };
 
-const __fetchOrgsSelectDataStart = fetchSelectDataStart(consts.ORGS_SELECT_NAME);
-const __fetchOrgsSelectDataFinish = fetchSelectDataFinish(consts.ORGS_SELECT_NAME);
+const __fetchTaskTypesSelectDataStart = fetchSelectDataStart(consts.TASK_TYPES_SELECT_NAME);
+const __fetchTaskTypesSelectDataFinish = fetchSelectDataFinish(consts.TASK_TYPES_SELECT_NAME);
 
-const __fetchDepsSelectDataStart = fetchSelectDataStart(consts.DEPS_SELECT_NAME);
-const __fetchDepsSelectDataFinish = fetchSelectDataFinish(consts.DEPS_SELECT_NAME);
+const __fetchUsersSelectDataStart = fetchSelectDataStart(consts.USERS_SELECT_NAME);
+const __fetchUsersSelectDataFinish = fetchSelectDataFinish(consts.USERS_SELECT_NAME);
 
-const __fetchTitlesSelectDataStart = fetchSelectDataStart(consts.TITLES_SELECT_NAME);
-const __fetchTitlesSelectDataFinish = fetchSelectDataFinish(consts.TITLES_SELECT_NAME);
+const __fetchHostsSelectDataStart = fetchSelectDataStart(consts.HOSTS_SELECT_NAME);
+const __fetchHostsSelectDataFinish = fetchSelectDataFinish(consts.HOSTS_SELECT_NAME);
 
-export const fetchOrgs = () => dispatch => {
-    dispatch(__fetchOrgsSelectDataStart());
+const __fetchStatusesSelectDataStart = fetchSelectDataStart(consts.STATUSES_SELECT_NAME);
+const __fetchStatusesSelectDataFinish = fetchSelectDataFinish(consts.STATUSES_SELECT_NAME);
 
-    getOrganizations().then(data => {
-        dispatch(__fetchOrgsSelectDataFinish({
+export const fetchHostsToSelect = () => dispatch => {
+    dispatch(__fetchHostsSelectDataStart());
+
+    hosts.getHosts().then(data => {
+        dispatch(__fetchHostsSelectDataFinish({
             data: mapToSelect(data),
             loadingState: commonConsts.loadingState.LOADING_FINISHED
         }));
     })
     .catch(err => {
-        dispatch(__fetchOrgsSelectDataFinish({
+        dispatch(__fetchHostsSelectDataFinish({
             data: [],
             loadingState: commonConsts.loadingState.LOADING_ERRORED
         }));
     });
 };
 
-export const fetchDeps = () => dispatch => {
-    dispatch(__fetchDepsSelectDataStart());
+export const fetchTaskTypes = () => dispatch => {
+    dispatch(__fetchTaskTypesSelectDataStart());
 
-    getDepartments().then(data => {
-        dispatch(__fetchDepsSelectDataFinish({
+    api.getTaskTypes().then(data => {
+        dispatch(__fetchTaskTypesSelectDataFinish({
             data: mapToSelect(data),
             loadingState: commonConsts.loadingState.LOADING_FINISHED
         }));
     })
     .catch(err => {
-        dispatch(__fetchDepsSelectDataStart({
+        dispatch(__fetchTaskTypesSelectDataFinish({
             data: [],
             loadingState: commonConsts.loadingState.LOADING_ERRORED
         }));
     });
 };
 
-export const fetchTitles = () => dispatch => {
-    dispatch(__fetchTitlesSelectDataStart());
+export const fetchStatuses = () => dispatch => {
+    dispatch(__fetchStatusesSelectDataStart());
 
-    getTitles().then(data => {
-        dispatch(__fetchTitlesSelectDataFinish({
+    api.getStatuses().then(data => {
+        dispatch(__fetchStatusesSelectDataFinish({
             data: mapToSelect(data),
             loadingState: commonConsts.loadingState.LOADING_FINISHED
         }));
     })
     .catch(err => {
-        dispatch(__fetchTitlesSelectDataFinish({
+        dispatch(__fetchStatusesSelectDataFinish({
+            data: [],
+            loadingState: commonConsts.loadingState.LOADING_ERRORED
+        }));
+    });
+};
+
+export const fetchUsers = () => dispatch => {
+    dispatch(__fetchUsersSelectDataStart());
+
+    users.getUsersForSelect().then(data => {
+        dispatch(__fetchUsersSelectDataFinish({
+            data,
+            loadingState: commonConsts.loadingState.LOADING_FINISHED
+        }));
+    })
+    .catch(err => {
+        dispatch(__fetchUsersSelectDataFinish({
             data: [],
             loadingState: commonConsts.loadingState.LOADING_ERRORED
         }));

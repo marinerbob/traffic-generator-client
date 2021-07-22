@@ -5,5 +5,6 @@ export default {
     CREATE_TASK_MODAL_NAME: 'createTaskModal',
     TASK_TYPES_SELECT_NAME: 'createTaskForm/taskTypes',
     USERS_SELECT_NAME: 'createTaskForm/users',
-    HOSTS_SELECT_NAME: 'createTaskForm/hosts'
+    HOSTS_SELECT_NAME: 'createTaskForm/hosts',
+    STATUSES_SELECT_NAME: 'createTaskForm/statuses'
 };

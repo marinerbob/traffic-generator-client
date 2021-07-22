@@ -32,7 +32,8 @@ const modalFormState = createReducer(defaultState, builder => {
 const selects = combineReducers({
     taskTypesSelect: createSelectReducer(consts.TASK_TYPES_SELECT_NAME),
     hostsSelect: createSelectReducer(consts.HOSTS_SELECT_NAME),
-    usersSelect: createSelectReducer(consts.USERS_SELECT_NAME)
+    usersSelect: createSelectReducer(consts.USERS_SELECT_NAME),
+    statusesSelect: createSelectReducer(consts.STATUSES_SELECT_NAME)
 });
 
 export default combineReducers({

@@ -10,9 +10,10 @@ export const getCreateTaskModal = state => getTasksPage(state).createTaskModal;
 export const getModalFormState = state => getCreateTaskModal(state).modalFormState;
 export const getSelects = state => getCreateTaskModal(state).selects;
 
-// export const getDepsSelectState = state => getSelects(state).departmentsSelect;
-// export const getOrgsSelectState = state => getSelects(state).organizationsSelect;
-// export const getTitlesSelectState = state => getSelects(state).titlesSelect;
+export const getHostsSelectState = state => getSelects(state).hostsSelect;
+export const getUsersSelectState = state => getSelects(state).usersSelect;
+export const getTaskTypesSelectState = state => getSelects(state).taskTypesSelect;
+export const getStatusesSelectState = state => getSelects(state).statusesSelect;
 
 export const getCreateTaskModalVisibility = state => getModalVisibility(state, consts.CREATE_TASK_MODAL_NAME);
 

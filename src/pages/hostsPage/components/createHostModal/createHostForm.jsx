@@ -5,16 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createHost } from './redux/actions.js';
 import { getCreateHostModalVisibility } from './redux/selectors.js';
 
-import { Input, Form, Row, Col, Slider, Switch, InputNumber, DatePicker } from "antd";
+import { Input, Form, Alert } from "antd";
 
 import { Controller, useForm } from "react-hook-form";
 
 import AddUsersSelect from './addUserSelect';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import validationSchema from './validationSchema.js';
 
 
 export default () => {
-  const { control, reset, handleSubmit } = useForm();
+  const { control, reset, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
   const dispatch = useDispatch();
 
   const modalVisibility = useSelector(getCreateHostModalVisibility);
@@ -35,18 +39,20 @@ export default () => {
         <Controller
           name="name"
           control={control}
-          render={({ field }) => (
+          render={({ field }) => (<>
             <Input className="form-input" placeholder="Введите имя хоста" {...field} />
-          )}
+            {errors.name && <Alert type="error" message={errors.name.message} />}
+          </>)}
         />
       </Form.Item>
       <Form.Item name="ip" label="IP-адрес">
         <Controller
           name="ip"
           control={control}
-          render={({ field }) => (
+          render={({ field }) => (<>
             <Input className="form-input" placeholder="Введите ip хоста" {...field} />
-          )}
+            {errors.ip && <Alert type="error" message={errors.ip.message} />}
+          </>)}
         />
       </Form.Item>
       <Form.Item name="users" label="Пользователи">
@@ -54,9 +60,11 @@ export default () => {
           name="users"
           control={control}
           render={({ field }) =>
-          (<AddUsersSelect
+          (<><AddUsersSelect
             {...field}
-          />)}
+          />
+          {errors.users && <Alert type="error" message={errors.users.message} />}
+          </>)}
         />
       </Form.Item>
     </Form>

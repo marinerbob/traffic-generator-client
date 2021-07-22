@@ -174,6 +174,16 @@ let taskTypes = [{
     name: 'mail'
 }];
 
+const statuses = [{
+    id: 1,
+    name: 'in progress',
+}, {
+    id: 2,
+    name: 'started'
+}, {
+    id: 3,
+    name: 'finished'
+}];
 export default () => {
     const getTasks = () => {
         return new Promise((resolve, reject) => {
@@ -200,9 +210,19 @@ export default () => {
         });
     };
 
+    const getStatuses = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(statuses);
+            }, 2000);
+        });
+    };
+
+
     return {
         getTasks,
         addTask,
-        getTaskTypes
+        getTaskTypes,
+        getStatuses
     };
 }
