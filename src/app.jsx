@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import 'common/scss/common.scss';
 
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 
 import Layout from 'shells/layout';
 import ReduxShell from 'shells/redux';
@@ -21,7 +21,9 @@ export default function App() {
             <Route path="/tasks" component={TasksPage} />
             <Route path="/users" component={UsersPage} />
             <Route path="/hosts" component={HostsPage} />
-            <Route path="/" component={HostsPage} />
+            <Route exact path="/">
+              <Redirect to="/hosts" />
+            </Route>
           </Switch>
         </Layout>
       </RouterShell>

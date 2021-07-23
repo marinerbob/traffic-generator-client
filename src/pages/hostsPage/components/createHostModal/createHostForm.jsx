@@ -40,7 +40,7 @@ export default () => {
           name="name"
           control={control}
           render={({ field }) => (<>
-            <Input className="form-input" placeholder="Введите имя хоста" {...field} />
+            <Input className={errors.name ? 'form-input_errored' : ''} placeholder="Введите имя хоста" {...field} />
             {errors.name && <Alert type="error" message={errors.name.message} />}
           </>)}
         />
@@ -50,7 +50,7 @@ export default () => {
           name="ip"
           control={control}
           render={({ field }) => (<>
-            <Input className="form-input" placeholder="Введите ip хоста" {...field} />
+            <Input className={errors.ip ? 'form-input_errored' : ''} placeholder="Введите ip хоста" {...field} />
             {errors.ip && <Alert type="error" message={errors.ip.message} />}
           </>)}
         />
@@ -62,6 +62,7 @@ export default () => {
           render={({ field }) =>
           (<><AddUsersSelect
             {...field}
+            className={errors.users ? 'form-input_errored' : ''}
           />
           {errors.users && <Alert type="error" message={errors.users.message} />}
           </>)}

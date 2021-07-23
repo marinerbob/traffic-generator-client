@@ -1,5 +1,6 @@
 @import '~antd/dist/antd.css';
 @import './tables.scss';
+@import './variables.scss';
 
 .site-layout {
     min-height: 280px;
@@ -21,4 +22,8 @@
   .form-input {
     margin: 5px 0;
   }
-
+  
+  .form-input_errored,
+  .form-input_errored.ant-select .ant-select-selector {
+    border-color: $error-color;
+  }
