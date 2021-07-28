@@ -16,7 +16,6 @@ import "./createTaskModal.scss";
 import AddUserSelect from "./addUserSelect.jsx";
 import AddHostSelect from "./addHostSelect.jsx";
 import AddTaskTypeSelect from "./addTaskTypeSelect.jsx";
-import AddStatusSelect from "./addStatusSelect.jsx";
 
 export default () => {
   const { control, reset, handleSubmit } = useForm();
@@ -62,13 +61,6 @@ export default () => {
           name="taskType"
           control={control}
           render={({ field }) => <AddTaskTypeSelect {...field} />}
-        />
-      </Form.Item>
-      <Form.Item name="status" label="Статус задачи">
-        <Controller
-          name="taskType"
-          control={control}
-          render={({ field }) => <AddStatusSelect {...field} />}
         />
       </Form.Item>
       <Form.Item label="Указание хостов">
@@ -145,7 +137,7 @@ export default () => {
         </div>
       </Form.Item>
 
-      <Form.Item name="repeats" label="Число повторений">
+      <Form.Item name="repeats" label="Число выполнения">
         <Controller
           name="repeats"
           control={control}
