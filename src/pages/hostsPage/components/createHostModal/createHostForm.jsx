@@ -1,23 +1,29 @@
 import React, { useEffect } from "react";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import { createHost } from './redux/actions.js';
-import { getCreateHostModalVisibility } from './redux/selectors.js';
+import { createHost } from "./redux/actions.js";
+import { getCreateHostModalVisibility } from "./redux/selectors.js";
 
-import { Input, Form, Alert } from "antd";
+import { Input, Form } from "antd";
 
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import AddUsersSelect from './addUserSelect';
+import AddUsersSelect from "./addUserSelect";
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import validationSchema from './validationSchema.js';
+import { yupResolver } from "@hookform/resolvers/yup";
+import validationSchema from "./validationSchema.js";
 
+import BindToForm from "components/boundFormComponent";
 
 export default () => {
-  const { control, reset, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(validationSchema)
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
   });
   const dispatch = useDispatch();
 
@@ -31,43 +37,25 @@ export default () => {
 
   useEffect(() => {
     reset();
-  }, [!modalVisibility])
+  }, [!modalVisibility]);
 
   return (
-    <Form labelCol={{ span: 5 }} wrapperCol={{ span: 20 }} id="create-host" name="create-host" onFinish={handleSubmit(onSubmit)}>
-      <Form.Item name="name" label="Имя">
-        <Controller
-          name="name"
-          control={control}
-          render={({ field }) => (<>
-            <Input className={errors.name ? 'form-input_errored' : ''} placeholder="Введите имя хоста" {...field} />
-            {errors.name && <Alert type="error" message={errors.name.message} />}
-          </>)}
-        />
-      </Form.Item>
-      <Form.Item name="ip" label="IP-адрес">
-        <Controller
-          name="ip"
-          control={control}
-          render={({ field }) => (<>
-            <Input className={errors.ip ? 'form-input_errored' : ''} placeholder="Введите ip хоста" {...field} />
-            {errors.ip && <Alert type="error" message={errors.ip.message} />}
-          </>)}
-        />
-      </Form.Item>
-      <Form.Item name="users" label="Пользователи">
-        <Controller
-          name="users"
-          control={control}
-          render={({ field }) =>
-          (<><AddUsersSelect
-            {...field}
-            className={errors.users ? 'form-input_errored' : ''}
-          />
-          {errors.users && <Alert type="error" message={errors.users.message} />}
-          </>)}
-        />
-      </Form.Item>
+    <Form
+      labelCol={{ span: 5 }}
+      wrapperCol={{ span: 20 }}
+      id="create-host"
+      name="create-host"
+      onFinish={handleSubmit(onSubmit)}
+    >
+      <BindToForm name="name" label="Имя" error={errors.name} control={control}>
+        <Input placeholder="Введите имя хоста" />
+      </BindToForm>
+      <BindToForm name="ip" label="IP-адрес" error={errors.ip} control={control}>
+        <Input placeholder="Введите ip хоста" />
+      </BindToForm>
+      <BindToForm name="users" label="Пользователи" error={errors.users} control={control}>
+        <AddUsersSelect />
+      </BindToForm>
     </Form>
   );
 };
