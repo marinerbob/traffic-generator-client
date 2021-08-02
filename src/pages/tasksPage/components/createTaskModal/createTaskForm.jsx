@@ -17,6 +17,8 @@ import AddUserSelect from "./addUserSelect.jsx";
 import AddHostSelect from "./addHostSelect.jsx";
 import AddTaskTypeSelect from "./addTaskTypeSelect.jsx";
 
+import BindToForm from 'components/bindToFormComponent';
+
 export default () => {
   const { control, reset, handleSubmit } = useForm();
   const dispatch = useDispatch();
@@ -47,64 +49,33 @@ export default () => {
       name="create-task"
       onFinish={handleSubmit(onSubmit)}
     >
-      <Form.Item name="name" label="Наименование">
-        <Controller
-          name="name"
-          control={control}
-          render={({ field }) => (
-            <Input placeholder="Введите наименование задачи" {...field} />
-          )}
-        />
-      </Form.Item>
-      <Form.Item name="taskType" label="Тип задачи">
-        <Controller
-          name="taskType"
-          control={control}
-          render={({ field }) => <AddTaskTypeSelect {...field} />}
-        />
-      </Form.Item>
+      <BindToForm name="name" label="Наименование" control={control}>
+        <Input placeholder="Введите наименование задачи" />
+      </BindToForm>
+      <BindToForm name="taskType" label="Тип задачи" control={control}>
+        <AddTaskTypeSelect />
+      </BindToForm>
       <Form.Item label="Указание хостов">
         <Input.Group compact>
-          <Form.Item noStyle>
-            <Controller
-              name="sender"
-              control={control}
-              render={({ field }) => (
-                <AddHostSelect
-                  style={{ width: "50%" }}
-                  placeholder="Выберите отправителя"
-                  {...field}
-                />
-              )}
+          <BindToForm name="sender" control={control} noStyle>
+            <AddHostSelect
+              style={{ width: "50%" }}
+              placeholder="Выберите отправителя"
             />
-          </Form.Item>
-          <Form.Item noStyle>
-            <Controller
-              name="receiver"
-              control={control}
-              render={({ field }) => (
-                <AddHostSelect
-                  style={{ width: "50%" }}
-                  placeholder="Выберите получателя"
-                  {...field}
-                />
-              )}
+          </BindToForm>
+          <BindToForm name="receiver" control={control} noStyle>
+            <AddHostSelect
+              style={{ width: "50%" }}
+              placeholder="Выберите получателя"
             />
-          </Form.Item>
+          </BindToForm>
         </Input.Group>
       </Form.Item>
-      <Form.Item label="Активный пользователь">
-        <Controller
-          name="userId"
-          control={control}
-          render={({ field }) => (
-            <AddUserSelect
-              placeholder="Выберите активного пользователя"
-              {...field}
-            />
-          )}
+      <BindToForm name="userId" label="Активный пользователь" control={control}>
+        <AddUserSelect
+          placeholder="Выберите активного пользователя"
         />
-      </Form.Item>
+      </BindToForm>
       <Form.Item wrapperCol={{ offset: 7 }} className="nested-form-item">
         <div className="form-group">
           <Form.Item name="isActive" label="Включить задачу">

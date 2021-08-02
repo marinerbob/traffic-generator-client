@@ -14,7 +14,7 @@ import AddUsersSelect from "./addUserSelect";
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "./validationSchema.js";
 
-import BindToForm from "components/boundFormComponent";
+import BindToForm from "components/bindToFormComponent";
 
 export default () => {
   const {
