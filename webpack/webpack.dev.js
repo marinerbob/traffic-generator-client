@@ -8,6 +8,7 @@ const DIST_DIR = path.join(ROOT_DIR, 'dist');
 
 module.exports = merge(common, {
     mode: 'development',
+    devtool: 'inline-source-map',
     devServer: {
         contentBase: DIST_DIR,
         compress: true,
@@ -19,5 +20,16 @@ module.exports = merge(common, {
         historyApiFallback: true,
         inline: true
     },
-    devtool: 'inline-source-map'
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ]
+    }
 });
