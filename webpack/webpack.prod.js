@@ -5,6 +5,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(common, {
     mode: 'production',
+    devtool: false,
     optimization: {
         splitChunks: { 
             cacheGroups: {
@@ -16,10 +17,11 @@ module.exports = merge(common, {
                 },
             },
         },
+        minimize: true,
         minimizer: [
             new TerserPlugin({
                 parallel: true
             })
         ]
-    },
+    }
 });
