@@ -13,6 +13,7 @@ export const getCreateHostModalVisibility = state => getModalVisibility(state, c
 
 export const getHostAddingStatus = state => getModalFormState(state).hostAddingStatus;
 export const getFormData = state => getModalFormState(state).formData;
+export const getFormError = state => getModalFormState(state).error;
 
 export const getUsersSelectData = state => getSelectData(getUsersSelectState(state));
 export const getUsersSelectLoadingState = state => getSelectLoadingState(getUsersSelectState(state));

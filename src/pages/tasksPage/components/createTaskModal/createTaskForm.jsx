@@ -7,7 +7,7 @@ import { getCreateTaskModalVisibility } from "./redux/selectors.js";
 
 import { Input, Form, Slider, Switch, DatePicker, TimePicker } from "antd";
 
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import locale from "antd/es/date-picker/locale/ru_RU";
 import dayjs from "dayjs";
@@ -17,10 +17,14 @@ import AddUserSelect from "./addUserSelect.jsx";
 import AddHostSelect from "./addHostSelect.jsx";
 import AddTaskTypeSelect from "./addTaskTypeSelect.jsx";
 
-import BindToForm from 'components/bindToFormComponent';
+import BindToForm from 'components/bindToFormComponent/BindToForm';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import validationSchema from './validationSchema.js';
 
 export default () => {
-  const { control, reset, handleSubmit } = useForm();
+  const { control, reset, handleSubmit,
+  formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
   const dispatch = useDispatch();
 
   const modalVisibility = useSelector(getCreateTaskModalVisibility);
@@ -30,8 +34,6 @@ export default () => {
 
     // dispatch(createTask(data));
   };
-
-  console.log("rendered");
 
   const disabledDate = (current) => {
     return current && current < dayjs();
@@ -49,127 +51,137 @@ export default () => {
       name="create-task"
       onFinish={handleSubmit(onSubmit)}
     >
-      <BindToForm name="name" label="Наименование" control={control}>
-        <Input placeholder="Введите наименование задачи" />
-      </BindToForm>
-      <BindToForm name="taskType" label="Тип задачи" control={control}>
-        <AddTaskTypeSelect />
-      </BindToForm>
+      <BindToForm name="name" label="Наименование" control={control}
+      error={errors.name}
+      render={(props) => (
+        <Input {...props} placeholder="Введите наименование задачи" />
+      )} />
+        
+      <BindToForm name="taskType" label="Тип задачи" control={control} 
+      error={errors.taskType}
+      render={(props) => (
+        <AddTaskTypeSelect {...props} />
+      )} />
+        
       <Form.Item label="Указание хостов">
         <Input.Group compact>
-          <BindToForm name="sender" control={control} noStyle>
-            <AddHostSelect
+          <BindToForm name="sender" control={control} itemProps={{ noStyle: true }}
+            error={errors.sender}
+            render={(props) => (
+              <AddHostSelect
+              {...props}
               style={{ width: "50%" }}
               placeholder="Выберите отправителя"
             />
-          </BindToForm>
-          <BindToForm name="receiver" control={control} noStyle>
+            )}
+          />
+          <BindToForm name="receiver" control={control} itemProps={{ noStyle: true }}
+          error={errors.receiver}
+          render={(props) => (
             <AddHostSelect
+              {...props}
               style={{ width: "50%" }}
               placeholder="Выберите получателя"
             />
-          </BindToForm>
+          )} />
         </Input.Group>
       </Form.Item>
-      <BindToForm name="userId" label="Активный пользователь" control={control}>
-        <AddUserSelect
+      <BindToForm name="userId" label="Активный пользователь" control={control}
+        error={errors.userId}
+        render={(props) => (
+          <AddUserSelect
+          {...props}
           placeholder="Выберите активного пользователя"
         />
-      </BindToForm>
+        )} />
       <Form.Item wrapperCol={{ offset: 7 }} className="nested-form-item">
         <div className="form-group">
-          <Form.Item name="isActive" label="Включить задачу">
-            <Controller
-              name="isActive"
-              control={control}
-              render={({ field }) => (
-                <Switch {...field} checked={field.value} />
-              )}
-            />
-          </Form.Item>
-          <Form.Item name="isRepeatable" label="Повторяемая">
-            <Controller
-              name="isRepeatable"
-              control={control}
-              render={({ field }) => (
-                <Switch {...field} checked={field.value} />
-              )}
-            />
-          </Form.Item>
-          <Form.Item name="isUnix" label="Для unix">
-            <Controller
-              name="isUnix"
-              control={control}
-              render={({ field }) => (
-                <Switch {...field} checked={field.value} />
-              )}
-            />
-          </Form.Item>
+          <BindToForm name="isActive" label="Включить задачу" 
+            control={control}
+            error={errors.isActive}
+            render={(props) => (
+              <Switch {...props} checked={props.value} defaultChecked={false} />
+            )}
+          />
+          <BindToForm name="isRepeatable" label="Повторяемая" 
+            control={control}
+            error={errors.isRepeatable}
+            render={(props) => (
+              <Switch {...props} checked={props.value} defaultChecked={false} />
+            )}
+          />
+          <BindToForm name="isUnix" label="Для Unix" 
+            control={control}
+            error={errors.isUnix}
+            render={(props) => (
+              <Switch {...props} checked={props.value} defaultChecked={false} />
+            )}
+          />
         </div>
       </Form.Item>
 
-      <Form.Item name="repeats" label="Число выполнения">
-        <Controller
-          name="repeats"
-          control={control}
-          render={({ field }) => (
-            <Slider
-              marks={{ 1: "1", 100: "100" }}
-              step={1}
-              min={1}
-              max={100}
-              {...field}
-            />
-          )}
-        />
-      </Form.Item>
+      <BindToForm name="repeats" label="Число выполнений" 
+      control={control}
+      error={errors.repeats}
+      render={(props) => (
+        <Slider
+        marks={{ 1: "1", 100: "100" }}
+        step={1}
+        min={1}
+        max={100}
+        {...props}
+      />
+      )} />
       <Form.Item label="Задание времени">
         <Input.Group compact>
-          <Form.Item name="delay" noStyle>
-            <Controller
-              name="delay"
-              control={control}
-              render={({ field }) => (
-                <TimePicker
-                  {...field}
-                  style={{ width: "50%" }}
-                  placeholder="Выберите время до старта"
-                />
-              )}
+          <BindToForm name="delay" control={control}
+            itemProps={{ noStyle: true }} 
+            error={errors.delay}
+            render={(props) => (
+              <TimePicker
+              {...props}
+              style={{ width: "50%" }}
+              placeholder="Выберите время до старта"
             />
-          </Form.Item>
-          <Form.Item name="startTime" noStyle>
-            <Controller
-              name="startTime"
-              control={control}
-              render={({ field }) => (
-                <DatePicker
-                  disabledDate={disabledDate}
-                  format="YYYY-MM-DD HH:mm:ss"
-                  locale={locale}
-                  placeholder="Выберите дату запуска"
-                  showTime={true}
-                  style={{ width: "50%" }}
-                  {...field}
-                />
-              )}
+            )}
+          />
+          <BindToForm name="startTime" control={control} 
+            itemProps={{ noStyle: true }}
+            error={errors.startTime}
+            render={(props) => (
+              <DatePicker
+              disabledDate={disabledDate}
+              format="YYYY-MM-DD HH:mm:ss"
+              locale={locale}
+              placeholder="Выберите дату запуска"
+              showTime={true}
+              style={{ width: "50%" }}
+              {...props}
             />
-          </Form.Item>
+            )}
+          />
         </Input.Group>
       </Form.Item>
-      <Form.Item label="Описание">
-        <Controller
-          name="description"
-          control={control}
-          render={({ field }) => (
-            <Input.TextArea
-              rows={5}
-              placeholder="Введите описание..."
-              {...field}
-            />
-          )}
+      <BindToForm name="params" label="Передаваемые параметры" control={control} 
+        error={errors.params}
+        render={(props) => (
+          <Input.TextArea
+          rows={5}
+          placeholder="Ввод параметров допускается по модели: <название_параметра>=<значение_параметра> через символ переноса строки"
+          {...props}
         />
-      </Form.Item>
+        )}
+      />
+      <BindToForm name="description" label="Описание" control={control}
+        error={errors.description}
+        render={(props) => (
+          <Input.TextArea
+          rows={5}
+          placeholder="Введите описание..."
+          {...props}
+        />
+        )}
+      />
     </Form>
   );
 };

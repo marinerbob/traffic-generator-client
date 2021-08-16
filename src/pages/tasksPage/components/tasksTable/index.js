@@ -26,7 +26,7 @@ const columns = [
     width: 150,
     fixed: 'left',
     align: 'center',
-    render: isActive => (<Switch checked={isActive} />)
+    render: isActive => (<Switch disabled checked={isActive} />)
   },
   {
     title: 'Тип задачи',
@@ -98,7 +98,7 @@ const columns = [
   }
 ];
 
-const pageSize = 8;
+const pageSize = 5;
 const rowKey = "id";
 
 export default () => {

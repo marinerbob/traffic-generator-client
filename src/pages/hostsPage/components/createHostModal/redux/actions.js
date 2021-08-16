@@ -6,8 +6,9 @@ import { TOGGLE_CREATE_HOST_MODAL,
 import consts from './constants';
 import commonConsts from 'utils/commonConsts';
 
-import hostsAPI from 'src/fakeAPI/hosts';
 import usersAPI from 'src/fakeAPI/users';
+
+import { addNewHost } from 'api/hosts';
 
 import { fetchHosts } from 'pages/hostsPage/components/hostsTable/redux/actions';
 
@@ -19,13 +20,12 @@ export const toggleCreateHostModal = toggleModalVisibility({ modalId: consts.CRE
 const __createHostStarted = createAction(CREATE_HOST_STARTED);
 const __createHostFinished = createAction(CREATE_HOST_FINISHED);
 
-const api = hostsAPI();
 const usersApi = usersAPI();
 
 export const createHost = formData => dispatch => {
     dispatch(__createHostStarted());
 
-    api.addHost(formData).then(() => {
+    addNewHost(formData).then(() => {
         dispatch(__createHostFinished({
             hostAddingStatus: consts.CREATE_HOST_FINISHED
         }));
@@ -33,6 +33,7 @@ export const createHost = formData => dispatch => {
     })
     .catch(err => {
         dispatch(__createHostFinished({
+            error: err.message,
             hostAddingStatus: consts.CREATE_HOST_ERRORED
         }));
     });

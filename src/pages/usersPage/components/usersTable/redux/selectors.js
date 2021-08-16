@@ -15,5 +15,3 @@ export const getUser = id => state => getUsers(state)[id];
 export const getUserName = id => state => getUser(id)(state).fullName;
 
 export const getLoadingState = state => getUsersTable(state).loadingState;
-
-export const getDeletedUserId = state => getUsersTable(state).deletedUserId;

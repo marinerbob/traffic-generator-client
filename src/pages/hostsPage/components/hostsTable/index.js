@@ -7,14 +7,13 @@ import { getHostsValues, getLoadingState, getHostsLength } from './redux/selecto
 import consts from 'utils/commonConsts';
 
 import DataTable from 'components/dataTable/dataTable.jsx';
-
-import DeleteHostButton from './deleteBtn.jsx';
+import { Tag } from 'antd';
 
 const columns = [
   {
     title: "IP-адрес",
-    dataIndex: "ip",
-    key: "ip",
+    dataIndex: "ipaddr",
+    key: "ipaddr",
     render: ip => (<>{ip}</>)
   },
   {
@@ -22,15 +21,17 @@ const columns = [
     key: "name",
     dataIndex: "name"
   },
-  {
-    dataIndex: 'id',
-    key: 'id',
-    render: id => (<><DeleteHostButton hostId={id}/></>),
-    width: 50
-  }
+  // {
+  //   title: 'Пользователи',
+  //   key: 'availableUsers',
+  //   dataIndex: 'availableUsers',
+  //   render: users => (<>
+  //     {users.map(user => (<Tag key={user.id} color="blue">{user.login}</Tag>))}
+  //   </>)
+  // },
 ];
 
-const pageSize = 8;
+const pageSize = 5;
 const rowKey = "id";
 
 export default () => {

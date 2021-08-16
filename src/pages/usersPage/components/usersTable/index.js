@@ -8,8 +8,6 @@ import consts from 'utils/commonConsts';
 
 import DataTable from 'components/dataTable/dataTable.jsx';
 
-import DeleteUserButton from './deleteBtn.jsx';
-
 const columns = [
   {
     title: "Имя",
@@ -35,16 +33,10 @@ const columns = [
     title: "Отдел",
     key: "departmentName",
     dataIndex: "departmentName"
-  },
-  {
-    dataIndex: 'id',
-    key: 'id',
-    render: id => (<><DeleteUserButton userId={id}/></>),
-    width: 50
   }
 ];
 
-const pageSize = 8;
+const pageSize = 5;
 const rowKey = "id";
 
 export default () => {
