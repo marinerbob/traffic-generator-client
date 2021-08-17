@@ -10,15 +10,10 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: DIST_DIR,
-        compress: true,
         port: 4200,
-        watchContentBase: true,
-        progress: true,
         hot: true,
         open: false,
-        historyApiFallback: true,
-        inline: true
+        historyApiFallback: true
     },
     module: {
         rules: [
